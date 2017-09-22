@@ -1,6 +1,8 @@
-ThinkCMF 5.0 高考版
+ThinkCMF 5.0
 ===============
-> 致我们正在消逝的青春！
+### 最新讲座
+https://segmentfault.com/l/1500000010866346  
+https://segmentfault.com/l/1500000010923687
 
 ### 赞助者招募
 [查看招募令http://www.thinkcmf.com/supportcmf/goldsponsor.html](http://www.thinkcmf.com/supportcmf/goldsponsor.html)
@@ -36,13 +38,14 @@ ThinkCMF 5.0 高考版
 ### 最低环境要求
 > php5.4+
 
-> mysql 5.5+ (mysql5.1稍后兼容)
+> mysql 5.5+ (mysql5.1安装时选择utf8编码，不支持表情符)
 
 > 打开rewrite
 
-### 演示站点
-http://demo5.thinkcmf.com/admin/   
-用户名/密码:demo/thinkcmf
+
+### 运行环境配置教程
+https://www.thinkcmf.com/topic/1502.html
+
 
 ### 自动安装
 > 之前安装过 cmf5的同学,请手动创建`data/install.lock`文件
@@ -114,7 +117,9 @@ http://www.kancloud.cn/thinkcmf/doc
    
 `ThinkCMF 高级交流群`:100828313 (付费)  
 高级群专属权益:  
-第一波:两个后台风格(ThinkCMF官网风格后台主题,蓝色风格后台主题)
+第一波:两个后台风格(ThinkCMF官网风格后台主题,蓝色风格后台主题)  
+第二波:ThinkCMF5完全开发手册离线版(PDF,EPUB,MOBI格式)  
+更多专属权益正在路上...
 
 `ThinkCMF 铲屎官交流群`:415136742 (生活娱乐，为有喵的猿人准备)
 

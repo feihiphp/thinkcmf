@@ -60,11 +60,16 @@ class RecycleBinController extends AdminBaseController
 
         $tableName = explode('#', $result['table_name']);
         $tableName = $tableName[0];
-        //还原文章
+        //还原资源
         if ($result) {
             $res = Db::name($tableName)
                 ->where(['id' => $result['object_id']])
                 ->update(['delete_time' => '0']);
+            if ($tableName =='portal_post'){
+                Db::name('portal_category_post')->where('post_id',$result['object_id'])->update(['status'=>1]);
+                Db::name('portal_tag_post')->where('post_id',$result['object_id'])->update(['status'=>1]);
+            }
+
             if ($res) {
                 $re = Db::name('recycleBin')->where('id', $id)->delete();
                 if ($re) {
@@ -91,7 +96,7 @@ class RecycleBinController extends AdminBaseController
     {
         $id     = $this->request->param('id');
         $result = Db::name('recycleBin')->where(['id' => $id])->find();
-        //删除文章
+        //删除资源
         if ($result) {
 
             //页面没有单独的表.
@@ -108,7 +113,8 @@ class RecycleBinController extends AdminBaseController
             if ($re) {
                 $res = Db::name('recycleBin')->where('id', $id)->delete();
                 if($result['table_name'] === 'portal_post'){
-                    $res2 = Db::name('portalCategoryPost')->where('post_id', $result['object_id'])->delete();
+                    Db::name('portal_category_post')->where('post_id',$result['object_id'])->delete();
+                    Db::name('portal_tag_post')->where('post_id',$result['object_id'])->delete();
                 }
                 if ($res) {
                     $this->success("删除成功！");
