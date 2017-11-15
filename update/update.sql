@@ -11,6 +11,9 @@ CREATE TABLE `cmf_dramas` (
   `air_time` datetime  NOT NULL  COMMENT '开播时间',
   `dramas_introduuction` text  NOT NULL  COMMENT '剧集介绍',
   `dramas_state` tinyint(1)  NOT NULL  COMMENT '剧集状态 0 停播 1在播 2季终',
+
+  `username` VARCHAR (125)  NOT NULL  COMMENT '添加人',
+
   `status` tinyint(1) NOT NULL  COMMENT  '状态 1为正常 0为删除',
   `gmt_create` datetime NOT NULL COMMENT '添加时间',
   `gmt_modified` datetime NOT NULL COMMENT '更新时间',
@@ -37,6 +40,7 @@ CREATE TABLE `cmf_seed` (
   `subtitles_url` varchar(256)  NOT NULL  COMMENT '字幕地址',
   `size_num` int(10) NOT NULL COMMENT '文件大小',
   `size_type` char(1) NOT NULL COMMENT '文件大小单位:M、G',
+  `username` VARCHAR (125)  NOT NULL  COMMENT '添加人',
   `status` tinyint(1) NOT NULL  COMMENT  '状态 1为正常 0为删除',
    `gmt_create` datetime NOT NULL COMMENT '添加时间',
   `gmt_modified` datetime NOT NULL COMMENT '更新时间',
