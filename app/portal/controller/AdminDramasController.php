@@ -36,23 +36,16 @@ class AdminDramasController extends AdminBaseController
     {
         $param = $this->request->param();
 
-        $categoryId = $this->request->param('category', 0, 'intval');
+        // 查询状态为1的用户数据 并且每页显示10条数据
+        $list = Db::name('dramas')->where('status',1)->paginate(10);
+        // 把分页数据赋值给模板变量list
+        $this->assign('list', $list);
 
-        $postService = new PostService();
-        $data        = $postService->adminArticleList($param);
 
-        $data->appends($param);
-
-        $portalCategoryModel = new PortalCategoryModel();
-        $categoryTree        = $portalCategoryModel->adminCategoryTree($categoryId);
-
-        $this->assign('start_time', isset($param['start_time']) ? $param['start_time'] : '');
-        $this->assign('end_time', isset($param['end_time']) ? $param['end_time'] : '');
         $this->assign('keyword', isset($param['keyword']) ? $param['keyword'] : '');
-        $this->assign('articles', $data->items());
-        $this->assign('category_tree', $categoryTree);
-        $this->assign('category', $categoryId);
-        $this->assign('page', $data->render());
+
+        $this->assign('list', $list);
+        $this->assign('page', $list->render());
 
 
         return $this->fetch();
