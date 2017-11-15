@@ -3,6 +3,7 @@ CREATE TABLE `cmf_dramas` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(125) NOT NULL COMMENT '标题',
   `english_title` varchar(125) NOT NULL COMMENT '英文标题',
+  `category` char(6) NOT NULL COMMENT '美剧分类。例如科幻类',
   `director` char(15)  NOT NULL  COMMENT '导演',
   `screenwriter` varchar(125)  NOT NULL  COMMENT '编剧',
   `performer` varchar(256)  NOT NULL  COMMENT '演员',
