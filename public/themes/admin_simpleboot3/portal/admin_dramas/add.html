@@ -29,73 +29,73 @@
 <body>
 <div class="wrap js-check-wrap">
     <ul class="nav nav-tabs">
-        <li><a href="{:url('AdminArticle/index')}">文章管理</a></li>
-        <li class="active"><a href="{:url('AdminArticle/add')}">添加文章</a></li>
+        <li><a href="{:url('AdminDramas/index')}">美剧管理</a></li>
+        <li class="active"><a href="{:url('AdminDramas/add')}">添加美剧</a></li>
     </ul>
-    <form action="{:url('AdminArticle/addPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+    <form action="{:url('AdminDramas/addPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
         <div class="row">
             <div class="col-md-9">
                 <table class="table table-bordered">
                     <tr>
                         <th width="100">分类<span class="form-required">*</span></th>
                         <td>
-                            <input class="form-control" type="text" style="width:400px;" required value=""
-                                   placeholder="请选择分类" onclick="doSelectCategory();" id="js-categories-name-input"
-                                   readonly/>
-                            <input class="form-control" type="hidden" value="" name="post[categories]"
-                                   id="js-categories-id-input"/>
+                            <select name="post[category]" class="form-control">
+                                <option>科幻类</option>
+                                <option>言情类</option>
+                                <option>战争类</option>
+                            </select>
+
+
+
+
                         </td>
                     </tr>
                     <tr>
                         <th>标题<span class="form-required">*</span></th>
                         <td>
-                            <input class="form-control" type="text" name="post[post_title]"
+                            <input class="form-control" type="text" name="post[title]"
                                    id="title" required value="" placeholder="请输入标题"/>
                         </td>
                     </tr>
                     <tr>
-                        <th>关键词</th>
+                        <th>英文标题<span class="form-required">*</span></th>
                         <td>
-                            <input class="form-control" type="text" name="post[post_keywords]" id="keywords" value=""
-                                   placeholder="请输入关键字">
-                            <p class="help-block">多关键词之间用英文逗号隔开</p>
+                            <input class="form-control" type="text" name="post[english_title]"
+                                   id="englist_title" required value="" placeholder="请输入英文标题"/>
                         </td>
                     </tr>
                     <tr>
-                        <th>文章来源</th>
-                        <td><input class="form-control" type="text" name="post[post_source]" id="source" value=""
-                                   placeholder="请输入文章来源"></td>
-                    </tr>
-                    <tr>
-                        <th>摘要</th>
+                        <th>导演</th>
                         <td>
-                            <textarea class="form-control" name="post[post_excerpt]" style="height: 50px;"
-                                      placeholder="请填写摘要"></textarea>
+                            <input class="form-control" type="text" name="post[director]" id="director" value=""
+                                   placeholder="请输入导演">
                         </td>
                     </tr>
+
+
                     <tr>
-                        <th>内容</th>
-                        <td>
-                            <script type="text/plain" id="content" name="post[post_content]"></script>
-                        </td>
+                        <th>编剧</th>
+                        <td><input class="form-control" type="text" name="post[screenwriter]" id="screenwriter" value=""
+                                   placeholder="请输入编剧"></td>
                     </tr>
                     <tr>
-                        <th>相册</th>
+                        <th>演员</th>
                         <td>
-                            <ul id="photos" class="pic-list list-unstyled form-inline"></ul>
-                            <a href="javascript:uploadMultiImage('图片上传','#photos','photos-item-tpl');"
-                               class="btn btn-default btn-sm">选择图片</a>
+                            <textarea class="form-control" name="post[performer]" style="height: 50px;"
+                                      placeholder="请填写演员"></textarea>
                         </td>
                     </tr>
+
+
+
+
                     <tr>
-                        <th>附件</th>
+                        <th>剧集介绍</th>
                         <td>
-                            <ul id="files" class="pic-list list-unstyled form-inline">
-                            </ul>
-                            <a href="javascript:uploadMultiFile('附件上传','#files','files-item-tpl');"
-                               class="btn btn-sm btn-default">选择文件</a>
+                            <script type="text/plain" id="dramas_introduction" name="post[dramas_introduction]"></script>
                         </td>
                     </tr>
+
                 </table>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
@@ -107,7 +107,7 @@
             <div class="col-md-3">
                 <table class="table table-bordered">
                     <tr>
-                        <th><b>缩略图</b></th>
+                        <th><b>剧集封面</b></th>
                     </tr>
                     <tr>
                         <td>
@@ -123,40 +123,40 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><b>发布时间</b></th>
+                        <th><b>开播时间</b></th>
                     </tr>
                     <tr>
                         <td>
-                            <input class="form-control js-bootstrap-datetime" type="text" name="post[published_time]"
+                            <input class="form-control js-bootstrap-datetime" type="text" required name="post[air_time]"
                                    value="{:date('Y-m-d H:i:s',time())}">
                         </td>
                     </tr>
                     <tr>
-                        <th><b>状态</b></th>
+                        <th><b>剧集状态</b></th>
                     </tr>
                     <tr>
                         <td>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="post[post_status]" value="1" checked>发布</label>
+                                <label><input type="radio" name="post[dramas_state]" value="1" checked>&nbsp;&nbsp;在播</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="post[is_top]" value="1">置顶</label>
+                                <label><input type="radio" name="post[dramas_state]" value="2">&nbsp;&nbsp;季终</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <div class="checkbox">
-                                <label><input type="checkbox" name="post[recommended]" value="1">推荐</label>
+                                <label><input type="radio" name="post[dramas_state]" value="0">&nbsp;&nbsp;停播</label>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <th>文章模板</th>
+                        <th>剧集模板</th>
                     </tr>
                     <tr>
                         <td>
@@ -185,7 +185,7 @@
     $(function () {
 
         editorcontent = new baidu.editor.ui.Editor();
-        editorcontent.render('content');
+        editorcontent.render('dramas_introduction');
         try {
             editorcontent.sync();
         } catch (err) {
