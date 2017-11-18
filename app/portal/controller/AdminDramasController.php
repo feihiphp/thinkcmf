@@ -175,59 +175,38 @@ class AdminDramasController extends AdminBaseController
     }
 
     /**
-     * 文章删除
+     * 美剧删除
      * @adminMenu(
-     *     'name'   => '文章删除',
+     *     'name'   => '美剧删除',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10000,
      *     'icon'   => '',
-     *     'remark' => '文章删除',
+     *     'remark' => '美剧删除',
      *     'param'  => ''
      * )
      */
     public function delete()
     {
         $param           = $this->request->param();
-        $portalDramasModel = new PortalPostModel();
+        $portalDramasModel = new PortalDramasModel();
 
         if (isset($param['id'])) {
             $id           = $this->request->param('id', 0, 'intval');
-            $result       = $portalDramasModel->where(['id' => $id])->find();
-            $data         = [
-                'object_id'   => $result['id'],
-                'create_time' => time(),
-                'table_name'  => 'portal_post',
-                'name'        => $result['post_title']
-            ];
-            $resultPortal = $portalDramasModel
+            $portalDramasModel
                 ->where(['id' => $id])
-                ->update(['delete_time' => time()]);
-            if ($resultPortal) {
-                Db::name('portal_category_post')->where(['post_id'=>$id])->update(['status'=>0]);
-                Db::name('portal_tag_post')->where(['post_id'=>$id])->update(['status'=>0]);
+                ->update(['gmt_modified' => date('Y-m-d H:i:s'),'status'=>0]);
 
-                Db::name('recycleBin')->insert($data);
-            }
             $this->success("删除成功！", '');
 
         }
 
         if (isset($param['ids'])) {
             $ids     = $this->request->param('ids/a');
-            $recycle = $portalDramasModel->where(['id' => ['in', $ids]])->select();
-            $result  = $portalDramasModel->where(['id' => ['in', $ids]])->update(['delete_time' => time()]);
+            $result  = $portalDramasModel->where(['id' => ['in', $ids]])->update(['gmt_modified' => date('Y-m-d H:i:s'),'status'=>0]);
             if ($result) {
-                foreach ($recycle as $value) {
-                    $data = [
-                        'object_id'   => $value['id'],
-                        'create_time' => time(),
-                        'table_name'  => 'portal_post',
-                        'name'        => $value['post_title']
-                    ];
-                    Db::name('recycleBin')->insert($data);
-                }
+
                 $this->success("删除成功！", '');
             }
         }
