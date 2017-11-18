@@ -6,7 +6,7 @@
         <li class="active"><a href="javascript:;">所有美剧</a></li>
         <li><a href="{:url('AdminDramas/add')}">添加美剧</a></li>
     </ul>
-    <form class="well form-inline margin-top-20" method="post" action="{:url('AdminArticle/index')}">
+    <form class="well form-inline margin-top-20" method="post" action="{:url('AdminDramas/index')}">
         标题:
         <input type="text" class="form-control" name="keyword" style="width: 200px;"
                value="{$keyword|default=''}" placeholder="请输入标题...">
@@ -15,7 +15,7 @@
     <form class="js-ajax-form" action="" method="post">
         <div class="table-actions">
             <button class="btn btn-danger btn-sm js-ajax-submit" type="submit"
-                    data-action="{:url('AdminArticle/delete')}" data-subcheck="true" data-msg="您确定删除吗？">
+                    data-action="{:url('AdminDramas/delete')}" data-subcheck="true" data-msg="您确定删除吗？">
                 {:lang('DELETE')}
             </button>
         </div>
@@ -48,13 +48,13 @@
                     <td>{$vo.id}</td>
                     <td>{$vo.title}</td>
                     <td>{$vo.category}</td>
-                    <td>{$vo.username}</td>
+                    <td>{$vo.user_id}</td>
                     <td>{$vo.gmt_create}</td>
 
                     <td>
-                        <a href="{:url('AdminArticle/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
-                        <a href="{:url('AdminArticle/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
-                        <a href="{:url('AdminArticle/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
+                        <a href="{:url('AdminDramas/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('AdminDramas/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('AdminDramas/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
                     </td>
                 </tr>
             </foreach>

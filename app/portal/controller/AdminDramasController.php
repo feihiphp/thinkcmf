@@ -113,15 +113,15 @@ class AdminDramasController extends AdminBaseController
     }
 
     /**
-     * 编辑文章
+     * 编辑美剧
      * @adminMenu(
-     *     'name'   => '编辑文章',
+     *     'name'   => '编辑美剧',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10000,
      *     'icon'   => '',
-     *     'remark' => '编辑文章',
+     *     'remark' => '编辑美剧',
      *     'param'  => ''
      * )
      */
@@ -131,24 +131,22 @@ class AdminDramasController extends AdminBaseController
 
         $portalDramasModel = new PortalDramasModel();
         $post            = $portalDramasModel->where('id', $id)->find();
-        $themeModel        = new ThemeModel();
-        $articleThemeFiles = $themeModel->getActionThemeFiles('portal/Dramas/index');
-        $this->assign('article_theme_files', $articleThemeFiles);
         $this->assign('post', $post);
+
 
         return $this->fetch();
     }
 
     /**
-     * 编辑文章提交
+     * 编辑美剧提交
      * @adminMenu(
-     *     'name'   => '编辑文章提交',
+     *     'name'   => '编辑美剧提交',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10000,
      *     'icon'   => '',
-     *     'remark' => '编辑文章提交',
+     *     'remark' => '编辑美剧提交',
      *     'param'  => ''
      * )
      */
@@ -158,36 +156,18 @@ class AdminDramasController extends AdminBaseController
         if ($this->request->isPost()) {
             $data   = $this->request->param();
             $post   = $data['post'];
-            $result = $this->validate($post, 'AdminArticle');
+            $result = $this->validate($post, 'AdminDramas');
             if ($result !== true) {
                 $this->error($result);
             }
 
-            $portalDramasModel = new PortalPostModel();
+            $portalDramasModel = new PortalDramasModel();
 
-            if (!empty($data['photo_names']) && !empty($data['photo_urls'])) {
-                $data['post']['more']['photos'] = [];
-                foreach ($data['photo_urls'] as $key => $url) {
-                    $photoUrl = cmf_asset_relative_url($url);
-                    array_push($data['post']['more']['photos'], ["url" => $photoUrl, "name" => $data['photo_names'][$key]]);
-                }
-            }
 
-            if (!empty($data['file_names']) && !empty($data['file_urls'])) {
-                $data['post']['more']['files'] = [];
-                foreach ($data['file_urls'] as $key => $url) {
-                    $fileUrl = cmf_asset_relative_url($url);
-                    array_push($data['post']['more']['files'], ["url" => $fileUrl, "name" => $data['file_names'][$key]]);
-                }
-            }
 
-            $portalDramasModel->adminEditArticle($data['post'], $data['post']['categories']);
+            $portalDramasModel->adminEditDramas($data['post']);
 
-            $hookParam = [
-                'is_add'  => false,
-                'article' => $data['post']
-            ];
-            hook('portal_admin_after_save_article', $hookParam);
+
 
             $this->success('保存成功!');
 
