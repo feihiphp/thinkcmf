@@ -1,5 +1,5 @@
 
-CREATE TABLE `cmf_dramas` (
+CREATE TABLE `cmf_portal_dramas` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(125) NOT NULL COMMENT '标题',
   `english_title` varchar(125) NOT NULL COMMENT '英文标题',
@@ -24,7 +24,7 @@ CREATE TABLE `cmf_dramas` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='剧集表';
 
 
-CREATE TABLE `cmf_seed` (
+CREATE TABLE `cmf_portal_seed` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `dramas_id` bigint(10) unsigned NOT NULL  COMMENT '所属剧集',
   `title` varchar(125) NOT NULL COMMENT '标题',
