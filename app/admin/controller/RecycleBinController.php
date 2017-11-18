@@ -64,12 +64,7 @@ class RecycleBinController extends AdminBaseController
         if ($result) {
             $res = Db::name($tableName)
                 ->where(['id' => $result['object_id']])
-                ->update(['delete_time' => '0']);
-            if ($tableName =='portal_post'){
-                Db::name('portal_category_post')->where('post_id',$result['object_id'])->update(['status'=>1]);
-                Db::name('portal_tag_post')->where('post_id',$result['object_id'])->update(['status'=>1]);
-            }
-
+                ->update(['gmt_modified'=>date('Y-m-d H:i:s'),'status' => '1']);
             if ($res) {
                 $re = Db::name('recycleBin')->where('id', $id)->delete();
                 if ($re) {

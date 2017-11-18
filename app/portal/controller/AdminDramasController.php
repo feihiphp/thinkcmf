@@ -194,19 +194,37 @@ class AdminDramasController extends AdminBaseController
 
         if (isset($param['id'])) {
             $id           = $this->request->param('id', 0, 'intval');
-            $portalDramasModel
+            $result       = $portalDramasModel->where(['id' => $id])->find();
+            $data         = [
+                'object_id'   => $result['id'],
+                'create_time' => time(),
+                'table_name'  => 'portal_dramas',
+                'name'        => $result['title']
+            ];
+            $resultPortal =$portalDramasModel
                 ->where(['id' => $id])
                 ->update(['gmt_modified' => date('Y-m-d H:i:s'),'status'=>0]);
 
+            if ($resultPortal) {
+                Db::name('recycleBin')->insert($data);
+            }
             $this->success("删除成功！", '');
-
         }
 
         if (isset($param['ids'])) {
             $ids     = $this->request->param('ids/a');
+            $recycle = $portalDramasModel->where(['id' => ['in', $ids]])->select();
             $result  = $portalDramasModel->where(['id' => ['in', $ids]])->update(['gmt_modified' => date('Y-m-d H:i:s'),'status'=>0]);
             if ($result) {
-
+                foreach ($recycle as $value) {
+                    $data = [
+                        'object_id'   => $value['id'],
+                        'create_time' => time(),
+                        'table_name'  => 'portal_dramas',
+                        'name'        => $value['title']
+                    ];
+                    Db::name('recycleBin')->insert($data);
+                }
                 $this->success("删除成功！", '');
             }
         }

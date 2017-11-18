@@ -11,6 +11,8 @@
 return [
     'TABLE_PORTAL_CATEGORY'  => '文章分类',
     'TABLE_PORTAL_POST'      => '文章',
+    'TABLE_PORTAL_DRAMAS'      => '美剧',
+    'TABLE_PORTAL_SEED'      => '种子',
     'TABLE_SLIDE'      => '幻灯片',
     'TABLE_PORTAL_POST#PAGE' => '页面'
 ];
