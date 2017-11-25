@@ -27,6 +27,15 @@ class PortalSeedModel extends Model
         return $this->belongsTo('UserModel', 'user_id')->setEagerlyType(1);
     }
 
+    /**
+     * 关联 portal_dramas表
+     * @return $this
+     */
+    public function dramas()
+    {
+        return $this->belongsTo('PortalDramasModel', 'dramas_id')->setEagerlyType(1);
+    }
+
 
 
     /**
@@ -56,10 +65,11 @@ class PortalSeedModel extends Model
      * @param array $data 美剧数据
      * @return $this
      */
-    public function adminEditDramas($data)
+    public function adminEditSeed($data)
     {
 
-        unset($data['username']);
+        unset($data['user_id']);
+        unset($data['gmt_crete']);
         $data['gmt_modified'] = date('Y-m-d H:i:s');
         $this->allowField(true)->isUpdate(true)->data($data, true)->save();
         return $this;
