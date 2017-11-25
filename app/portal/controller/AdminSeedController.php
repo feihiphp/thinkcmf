@@ -35,23 +35,23 @@ class AdminSeedController extends AdminBaseController
     {
         $param = $this->request->param();
 
+        $id = $this->request->param('dramas_id', 0, 'intval');
 
-
+        $keyword = $this->request->param('keyword', "");
 
         // 查询状态为1的用户数据 并且每页显示10条数据
         $portalSeedModel = new PortalSeedModel();
 
-        if (isset($param['dramas_id'])){
+        $portalDramasModel = new PortalDramasModel();
+        $dramas           = $portalDramasModel->where('id', $id)->find();
+        $this->assign('dramas', $dramas);
 
-            $id = $this->request->param('dramas_id', 0, 'intval');
-            $portalDramasModel = new PortalDramasModel();
-            $dramas           = $portalDramasModel->where('id', $id)->find();
-            $this->assign('dramas', $dramas);
 
+
+        if (empty($keyword)){
             $list = $portalSeedModel->where(['status'=>1,'dramas_id'=>$id])->paginate(10);
-
         }else{
-            $list = $portalSeedModel->where('status',1)->paginate(10);
+            $list = $portalSeedModel->where(['status'=>1,'dramas_id'=>$id])->where('title','like','%'.$keyword.'%')->paginate(10);
         }
 
 
@@ -61,6 +61,8 @@ class AdminSeedController extends AdminBaseController
 
 
         $this->assign('keyword', isset($param['keyword']) ? $param['keyword'] : '');
+
+        $this->assign('dramas_id', $id);
 
         $this->assign('list', $list);
         $this->assign('page', $list->render());
@@ -253,142 +255,6 @@ class AdminSeedController extends AdminBaseController
         }
     }
 
-    /**
-     * 文章发布
-     * @adminMenu(
-     *     'name'   => '文章发布',
-     *     'parent' => 'index',
-     *     'display'=> false,
-     *     'hasView'=> false,
-     *     'order'  => 10000,
-     *     'icon'   => '',
-     *     'remark' => '文章发布',
-     *     'param'  => ''
-     * )
-     */
-    public function publish()
-    {
-        $param           = $this->request->param();
-        $portalPostModel = new PortalPostModel();
-
-        if (isset($param['ids']) && isset($param["yes"])) {
-            $ids = $this->request->param('ids/a');
-
-            $portalPostModel->where(['id' => ['in', $ids]])->update(['post_status' => 1, 'published_time' => time()]);
-
-            $this->success("发布成功！", '');
-        }
-
-        if (isset($param['ids']) && isset($param["no"])) {
-            $ids = $this->request->param('ids/a');
-
-            $portalPostModel->where(['id' => ['in', $ids]])->update(['post_status' => 0]);
-
-            $this->success("取消发布成功！", '');
-        }
-
-    }
-
-    /**
-     * 文章置顶
-     * @adminMenu(
-     *     'name'   => '文章置顶',
-     *     'parent' => 'index',
-     *     'display'=> false,
-     *     'hasView'=> false,
-     *     'order'  => 10000,
-     *     'icon'   => '',
-     *     'remark' => '文章置顶',
-     *     'param'  => ''
-     * )
-     */
-    public function top()
-    {
-        $param           = $this->request->param();
-        $portalPostModel = new PortalPostModel();
-
-        if (isset($param['ids']) && isset($param["yes"])) {
-            $ids = $this->request->param('ids/a');
-
-            $portalPostModel->where(['id' => ['in', $ids]])->update(['is_top' => 1]);
-
-            $this->success("置顶成功！", '');
-
-        }
-
-        if (isset($_POST['ids']) && isset($param["no"])) {
-            $ids = $this->request->param('ids/a');
-
-            $portalPostModel->where(['id' => ['in', $ids]])->update(['is_top' => 0]);
-
-            $this->success("取消置顶成功！", '');
-        }
-    }
-
-    /**
-     * 文章推荐
-     * @adminMenu(
-     *     'name'   => '文章推荐',
-     *     'parent' => 'index',
-     *     'display'=> false,
-     *     'hasView'=> false,
-     *     'order'  => 10000,
-     *     'icon'   => '',
-     *     'remark' => '文章推荐',
-     *     'param'  => ''
-     * )
-     */
-    public function recommend()
-    {
-        $param           = $this->request->param();
-        $portalPostModel = new PortalPostModel();
-
-        if (isset($param['ids']) && isset($param["yes"])) {
-            $ids = $this->request->param('ids/a');
-
-            $portalPostModel->where(['id' => ['in', $ids]])->update(['recommended' => 1]);
-
-            $this->success("推荐成功！", '');
-
-        }
-        if (isset($param['ids']) && isset($param["no"])) {
-            $ids = $this->request->param('ids/a');
-
-            $portalPostModel->where(['id' => ['in', $ids]])->update(['recommended' => 0]);
-
-            $this->success("取消推荐成功！", '');
-
-        }
-    }
-
-    /**
-     * 文章排序
-     * @adminMenu(
-     *     'name'   => '文章排序',
-     *     'parent' => 'index',
-     *     'display'=> false,
-     *     'hasView'=> false,
-     *     'order'  => 10000,
-     *     'icon'   => '',
-     *     'remark' => '文章排序',
-     *     'param'  => ''
-     * )
-     */
-    public function listOrder()
-    {
-        parent::listOrders(Db::name('portal_category_post'));
-        $this->success("排序更新成功！", '');
-    }
-
-    public function move()
-    {
-
-    }
-
-    public function copy()
-    {
-
-    }
 
 
 }
