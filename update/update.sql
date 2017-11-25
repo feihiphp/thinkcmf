@@ -12,7 +12,7 @@ CREATE TABLE `cmf_portal_dramas` (
   `dramas_introduction` text  NOT NULL  COMMENT '剧集介绍',
   `dramas_state` tinyint(1)  NOT NULL  COMMENT '剧集状态 0 停播 1在播 2季终',
   `cover` VARCHAR(125) NOT NULL  COMMENT '封面',
-
+  `recommended` tinyint(1) NOT NULL  DEFAULT 0 COMMENT '是否推荐,0不推荐 1推荐',
 
   `user_id` bigint (10) unsigned  NOT NULL  COMMENT '添加人的id',
 

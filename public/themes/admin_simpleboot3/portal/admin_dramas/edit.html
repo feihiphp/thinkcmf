@@ -141,6 +141,24 @@
                                    value="{$post.air_time}">
                         </td>
                     </tr>
+
+                    <tr>
+                        <th><b>推荐</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[recommended]" value="0" <if condition="$post.recommended == 0" >checked</if> >&nbsp;&nbsp;不推荐</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[recommended]" value="1" <if condition="$post.recommended == 1" >checked</if>>&nbsp;&nbsp;推荐</label>
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <th><b>剧集状态</b></th>
                     </tr>
