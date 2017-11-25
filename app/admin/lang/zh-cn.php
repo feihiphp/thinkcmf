@@ -75,8 +75,11 @@ return [
     "WEBSITE_ADMIN_THEME"                => '后台风格',
     "HTML_CACHE"                         => '开启静态缓存',
     "WEBSITE_ICP"                        => '备案信息',
-    "WEBMASTER_EMAIL"                    => '站长邮箱',
+    "WEBMASTER_EMAIL"                    => '网站联系邮箱',
     "WEBSITE_STATISTICAL_CODE"           => '统计代码',
+    "SINA_WEIBO"           => '新浪微博',
+    "SITE_NOTICE"           => '公告',
+
     "WEBSITE_COPYRIGHT_INFOMATION"       => '版权信息',
     "WEBSITE_SEO_TITLE"                  => "SEO标题",
     "WEBSITE_SEO_KEYWORDS"               => "SEO关键字",
