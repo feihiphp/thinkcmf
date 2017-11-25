@@ -29,90 +29,134 @@
 <body>
 <div class="wrap js-check-wrap">
     <ul class="nav nav-tabs">
-        <li><a href="{:url('AdminArticle/index')}">文章管理</a></li>
-        <li class="active"><a href="{:url('AdminArticle/add')}">添加文章</a></li>
+        <li ><a href="{:url('AdminSeed/index',['dramas_id'=>$dramas.id])}" >
+            {$dramas.title}的
+            所有种子</a></li>
+
+        <li class="active" >
+            <a href="{:url('AdminSeed/add',['dramas_id'=>$dramas.id])}">添加种子</a>
+
+        </li>
     </ul>
-    <form action="{:url('AdminArticle/addPost')}" method="post" class="form-horizontal js-ajax-form margin-top-20">
+    <form action="{:url('AdminSeed/addPost',['dramas_id'=>$dramas.id])}" method="post" class="form-horizontal js-ajax-form margin-top-20">
         <div class="row">
             <div class="col-md-9">
                 <table class="table table-bordered">
+
+
                     <tr>
-                        <th width="100">分类<span class="form-required">*</span></th>
+                        <th>所属剧集<span class="form-required">*</span></th>
                         <td>
-                            <input class="form-control" type="text" style="width:400px;" required value=""
-                                   placeholder="请选择分类" onclick="doSelectCategory();" id="js-categories-name-input"
-                                   readonly/>
-                            <input class="form-control" type="hidden" value="" name="post[categories]"
-                                   id="js-categories-id-input"/>
+                            <input type="hidden" name="post[dramas_id]" value="{$dramas.id}">
+                            <input class="form-control" type="text"
+                                   id="dramas_id" required value="{$dramas.title}" />
                         </td>
                     </tr>
+
                     <tr>
                         <th>标题<span class="form-required">*</span></th>
                         <td>
-                            <input class="form-control" type="text" name="post[post_title]"
+                            <input class="form-control" type="text" name="post[title]"
                                    id="title" required value="" placeholder="请输入标题"/>
                         </td>
                     </tr>
                     <tr>
-                        <th>关键词</th>
+                        <th>BT地址<span class="form-required">*</span></th>
                         <td>
-                            <input class="form-control" type="text" name="post[post_keywords]" id="keywords" value=""
-                                   placeholder="请输入关键字">
-                            <p class="help-block">多关键词之间用英文逗号隔开</p>
+                            <input class="form-control" type="text" name="post[bt_url]"
+                                   id="bt_url"  value="" placeholder="请输入BT地址"/>
                         </td>
                     </tr>
                     <tr>
-                        <th>文章来源</th>
-                        <td><input class="form-control" type="text" name="post[post_source]" id="source" value=""
-                                   placeholder="请输入文章来源"></td>
+                        <th>磁力地址</th>
+                        <td>
+                            <input class="form-control" type="text" name="post[mangnet_url]" id="mangnet_url" value=""
+                                   placeholder="请输入磁力地址">
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th>百度网盘地址</th>
+                        <td><input class="form-control" type="text" name="post[baiduyun_url]" id="baiduyun_url" value=""
+                                   placeholder="请输入百度网盘地址"></td>
                     </tr>
                     <tr>
-                        <th>摘要</th>
+                        <th>百度网盘密码</th>
                         <td>
-                            <textarea class="form-control" name="post[post_excerpt]" style="height: 50px;"
-                                      placeholder="请填写摘要"></textarea>
+                            <textarea class="form-control" name="post[baiduyun_password]" style="height: 50px;"
+                                      placeholder="请填写百度网盘密码"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th>内容</th>
+                        <th>微云地址</th>
                         <td>
-                            <script type="text/plain" id="content" name="post[post_content]"></script>
+                            <textarea class="form-control" name="post[weiyun_url]" style="height: 50px;"
+                                      placeholder="请填写微云地址"></textarea>
                         </td>
                     </tr>
                     <tr>
-                        <th>相册</th>
+                        <th>其他网盘</th>
                         <td>
-                            <ul id="photos" class="pic-list list-unstyled form-inline"></ul>
-                            <a href="javascript:uploadMultiImage('图片上传','#photos','photos-item-tpl');"
-                               class="btn btn-default btn-sm">选择图片</a>
+                            <textarea class="form-control" name="post[otheryun_url]" style="height: 50px;"
+                                      placeholder="请填写其他网盘"></textarea>
                         </td>
                     </tr>
+
                     <tr>
-                        <th>附件</th>
+                        <th>ed2k</th>
                         <td>
-                            <ul id="files" class="pic-list list-unstyled form-inline">
-                            </ul>
-                            <a href="javascript:uploadMultiFile('附件上传','#files','files-item-tpl');"
-                               class="btn btn-sm btn-default">选择文件</a>
+                            <textarea class="form-control" name="post[ed2k]" style="height: 50px;"
+                                      placeholder="请填写e2dk"></textarea>
                         </td>
                     </tr>
+
+                    <tr>
+                        <th>在线播放地址</th>
+                        <td>
+                            <textarea class="form-control" name="post[play_url]" style="height: 50px;"
+                                      placeholder="请填写在线播放地址"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>字幕类型</th>
+                        <td>
+                            <textarea class="form-control" name="post[subtitles_type]" style="height: 50px;"
+                                      placeholder="请填写字幕类型"></textarea>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>字幕地址</th>
+                        <td>
+                            <textarea class="form-control" name="post[subtitles_url]" style="height: 50px;"
+                                      placeholder="请填写字幕地址"></textarea>
+                        </td>
+                    </tr>
+
+
+
+
+
+
                 </table>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-primary js-ajax-submit">{:lang('ADD')}</button>
-                        <a class="btn btn-default" href="{:url('AdminArticle/index')}">{:lang('BACK')}</a>
+                        <a class="btn btn-default" href="{:url('AdminDramas/index')}">{:lang('BACK')}</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <table class="table table-bordered">
                     <tr>
-                        <th><b>缩略图</b></th>
+                        <th><b>封面</b></th>
                     </tr>
                     <tr>
                         <td>
                             <div style="text-align: center;">
-                                <input type="hidden" name="post[more][thumbnail]" id="thumbnail" value="">
+                                <input type="hidden" name="post[cover]" id="thumbnail" value="">
                                 <a href="javascript:uploadOneImage('图片上传','#thumbnail');">
                                     <img src="__TMPL__/public/assets/images/default-thumbnail.png"
                                          id="thumbnail-preview"
@@ -122,53 +166,79 @@
                             </div>
                         </td>
                     </tr>
+
                     <tr>
-                        <th><b>发布时间</b></th>
+                        <th >季数<span class="form-required">*</span></th>
+
                     </tr>
-                    <tr>
+                        <tr>
                         <td>
-                            <input class="form-control js-bootstrap-datetime" type="text" name="post[published_time]"
-                                   value="{:date('Y-m-d H:i:s',time())}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th><b>状态</b></th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="post[post_status]" value="1" checked>发布</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="post[is_top]" value="1">置顶</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="checkbox" name="post[recommended]" value="1">推荐</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>文章模板</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <select class="form-control" name="post[more][template]" id="more-template-select">
-                                <option value="">请选择模板</option>
-                                <foreach name="article_theme_files" item="vo">
-                                    <php>$value=preg_replace('/^portal\//','',$vo['file']);</php>
-                                    <option value="{$value}">{$vo.name} {$vo.file}.html</option>
-                                </foreach>
+                            <select name="post[season]" class="form-control">
+                                <option value="1" selected>第一季</option>
+                                <option value="2">第二季</option>
+                                <option value="3">第三季</option>
                             </select>
+
+
+
+
                         </td>
                     </tr>
+
+                    <tr>
+                        <th >集数<span class="form-required">*</span></th>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="post[episode]" class="form-control">
+
+                                <option value="1" selected>第一集</option>
+                                <option value="2">第二集</option>
+                                <option value="3">第三集</option>
+                            </select>
+
+
+
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <th><b>文件大小</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input class="form-control" type="text" required name="post[file_size]"
+                                   value="0" placeholder="请输入文件大小,单位是M">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><b>字幕类型</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[dramas_state]" value="1" checked>&nbsp;&nbsp;在播</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[dramas_state]" value="2">&nbsp;&nbsp;季终</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[dramas_state]" value="0">&nbsp;&nbsp;停播</label>
+                            </div>
+                        </td>
+                    </tr>
+
                 </table>
             </div>
         </div>
@@ -185,7 +255,7 @@
     $(function () {
 
         editorcontent = new baidu.editor.ui.Editor();
-        editorcontent.render('content');
+        editorcontent.render('dramas_introduction');
         try {
             editorcontent.sync();
         } catch (err) {
@@ -198,27 +268,7 @@
 
     });
 
-    function doSelectCategory() {
-        var selectedCategoriesId = $('#js-categories-id-input').val();
-        openIframeLayer("{:url('AdminCategory/select')}?ids=" + selectedCategoriesId, '请选择分类', {
-            area: ['700px', '400px'],
-            btn: ['确定', '取消'],
-            yes: function (index, layero) {
-                //do something
 
-                var iframeWin          = window[layero.find('iframe')[0]['name']];
-                var selectedCategories = iframeWin.confirm();
-                if (selectedCategories.selectedCategoriesId.length == 0) {
-                    layer.msg('请选择分类');
-                    return;
-                }
-                $('#js-categories-id-input').val(selectedCategories.selectedCategoriesId.join(','));
-                $('#js-categories-name-input').val(selectedCategories.selectedCategoriesName.join(' '));
-                //console.log(layer.getFrameIndex(index));
-                layer.close(index); //如果设定了yes回调，需进行手工关闭
-            }
-        });
-    }
 </script>
 </body>
 </html>

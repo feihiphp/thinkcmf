@@ -13,6 +13,7 @@ CREATE TABLE `cmf_portal_dramas` (
   `dramas_state` tinyint(1)  NOT NULL  COMMENT '剧集状态 0 停播 1在播 2季终',
   `cover` VARCHAR(125) NOT NULL  COMMENT '封面',
 
+
   `user_id` bigint (10) unsigned  NOT NULL  COMMENT '添加人的id',
 
   `status` tinyint(1) NOT NULL  COMMENT  '状态 1为正常 0为删除',
@@ -39,9 +40,11 @@ CREATE TABLE `cmf_portal_seed` (
   `play_url` varchar(256)  NOT NULL  COMMENT '在线播放地址',
   `subtitles_type` char(8)  NOT NULL  COMMENT '字幕类型：中文字幕 英文字幕 中英双语',
   `subtitles_url` varchar(256)  NOT NULL  COMMENT '字幕地址',
-  `size_num` int(10) NOT NULL COMMENT '文件大小',
-  `size_type` char(1) NOT NULL COMMENT '文件大小单位:M、G',
-  `username` VARCHAR (125)  NOT NULL  COMMENT '添加人',
+  `file_size` int(10) NOT NULL COMMENT '文件大小',
+  `down_num` int(10) NOT NULL COMMENT '下载量',
+  `season` int(10) NOT NULL COMMENT '季数',
+  `episode` int(10) NOT NULL COMMENT '集数',
+  `user_id` bigint (10) unsigned  NOT NULL  COMMENT '添加人的id',
   `status` tinyint(1) NOT NULL  COMMENT  '状态 1为正常 0为删除',
    `gmt_create` datetime NOT NULL COMMENT '添加时间',
   `gmt_modified` datetime NOT NULL COMMENT '更新时间',

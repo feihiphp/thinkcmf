@@ -52,7 +52,8 @@
                     <td>{$vo.gmt_create}</td>
 
                     <td>
-                        <a href="{:url('AdminDramas/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
+                        <a href="{:url('AdminSeed/index',array('dramas_id'=>$vo['id']))}">{:lang('SEED_LIST')}</a>
+                        <a href="{:url('AdminSeed/add',array('dramas_id'=>$vo['id']))}">{:lang('SEED_add')}</a>
                         <a href="{:url('AdminDramas/edit',array('id'=>$vo['id']))}">{:lang('EDIT')}</a>
                         <a href="{:url('AdminDramas/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:lang('DELETE')}</a>
                     </td>

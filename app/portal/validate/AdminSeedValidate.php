@@ -6,10 +6,23 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: 老猫 <thinkcmf@126.com>
+// | Author: 小夏 < 449134904@qq.com>
 // +----------------------------------------------------------------------
-/*后台通用多语言包*/
-return [
-    "SEED_LIST"                               => '种子列表',
-    "SEED_ADD"                               => '种子添加',
-];
+namespace app\portal\validate;
+
+use think\Validate;
+
+class AdminSeedValidate extends Validate
+{
+    protected $rule = [
+        'title' => 'require',
+    ];
+    protected $message = [
+        'title.require' => '标题不能为空！',
+    ];
+
+    protected $scene = [
+//        'add'  => ['user_login,user_pass,user_email'],
+//        'edit' => ['user_login,user_email'],
+    ];
+}

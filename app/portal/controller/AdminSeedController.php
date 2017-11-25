@@ -11,24 +11,23 @@
 namespace app\portal\controller;
 
 use cmf\controller\AdminBaseController;
-use app\portal\model\PortalPostModel;
-use app\portal\service\PostService;
-use app\portal\model\PortalCategoryModel;
+use app\portal\model\PortalSeedModel;
+use app\portal\model\PortalDramasModel;
 use think\Db;
 use app\admin\model\ThemeModel;
 
 class AdminSeedController extends AdminBaseController
 {
     /**
-     * 文章列表
+     * xx 剧集的种子列表。
      * @adminMenu(
-     *     'name'   => '文章管理',
+     *     'name'   => '种子管理',
      *     'parent' => 'portal/AdminIndex/default',
      *     'display'=> true,
      *     'hasView'=> true,
      *     'order'  => 10000,
      *     'icon'   => '',
-     *     'remark' => '文章列表',
+     *     'remark' => '种子列表',
      *     'param'  => ''
      * )
      */
@@ -36,46 +35,61 @@ class AdminSeedController extends AdminBaseController
     {
         $param = $this->request->param();
 
-        $categoryId = $this->request->param('category', 0, 'intval');
 
-        $postService = new PostService();
-        $data        = $postService->adminArticleList($param);
 
-        $data->appends($param);
 
-        $portalCategoryModel = new PortalCategoryModel();
-        $categoryTree        = $portalCategoryModel->adminCategoryTree($categoryId);
+        // 查询状态为1的用户数据 并且每页显示10条数据
+        $portalSeedModel = new PortalSeedModel();
 
-        $this->assign('start_time', isset($param['start_time']) ? $param['start_time'] : '');
-        $this->assign('end_time', isset($param['end_time']) ? $param['end_time'] : '');
+        if (isset($param['dramas_id'])){
+
+            $id = $this->request->param('dramas_id', 0, 'intval');
+            $portalDramasModel = new PortalDramasModel();
+            $dramas           = $portalDramasModel->where('id', $id)->find();
+            $this->assign('dramas', $dramas);
+
+            $list = $portalSeedModel->where(['status'=>1,'dramas_id'=>$id])->paginate(10);
+
+        }else{
+            $list = $portalSeedModel->where('status',1)->paginate(10);
+        }
+
+
+
+        // 把分页数据赋值给模板变量list
+        $this->assign('list', $list);
+
+
         $this->assign('keyword', isset($param['keyword']) ? $param['keyword'] : '');
-        $this->assign('articles', $data->items());
-        $this->assign('category_tree', $categoryTree);
-        $this->assign('category', $categoryId);
-        $this->assign('page', $data->render());
+
+        $this->assign('list', $list);
+        $this->assign('page', $list->render());
 
 
         return $this->fetch();
     }
 
     /**
-     * 添加文章
+     * 添加种子
      * @adminMenu(
-     *     'name'   => '添加文章',
+     *     'name'   => '添加种子',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> true,
      *     'order'  => 10000,
      *     'icon'   => '',
-     *     'remark' => '添加文章',
+     *     'remark' => '添加种子',
      *     'param'  => ''
      * )
      */
     public function add()
     {
-        $themeModel        = new ThemeModel();
-        $articleThemeFiles = $themeModel->getActionThemeFiles('portal/Article/index');
-        $this->assign('article_theme_files', $articleThemeFiles);
+
+        $id = $this->request->param('dramas_id', 0, 'intval');
+        $portalDramasModel = new PortalDramasModel();
+        $dramas            = $portalDramasModel->where('id', $id)->find();
+        $this->assign('dramas', $dramas);
+
         return $this->fetch();
     }
 
@@ -97,40 +111,25 @@ class AdminSeedController extends AdminBaseController
         if ($this->request->isPost()) {
             $data   = $this->request->param();
             $post   = $data['post'];
-            $result = $this->validate($post, 'AdminArticle');
+
+
+
+            $result = $this->validate($post, 'AdminSeed');
             if ($result !== true) {
                 $this->error($result);
             }
 
-            $portalPostModel = new PortalPostModel();
-
-            if (!empty($data['photo_names']) && !empty($data['photo_urls'])) {
-                $data['post']['more']['photos'] = [];
-                foreach ($data['photo_urls'] as $key => $url) {
-                    $photoUrl = cmf_asset_relative_url($url);
-                    array_push($data['post']['more']['photos'], ["url" => $photoUrl, "name" => $data['photo_names'][$key]]);
-                }
-            }
-
-            if (!empty($data['file_names']) && !empty($data['file_urls'])) {
-                $data['post']['more']['files'] = [];
-                foreach ($data['file_urls'] as $key => $url) {
-                    $fileUrl = cmf_asset_relative_url($url);
-                    array_push($data['post']['more']['files'], ["url" => $fileUrl, "name" => $data['file_names'][$key]]);
-                }
-            }
-
-            $portalPostModel->adminAddArticle($data['post'], $data['post']['categories']);
-
-            $data['post']['id'] = $portalPostModel->id;
-            $hookParam          = [
-                'is_add'  => true,
-                'article' => $data['post']
-            ];
-            hook('portal_admin_after_save_article', $hookParam);
+            $portalSeedModel = new PortalSeedModel();
 
 
-            $this->success('添加成功!', url('AdminArticle/edit', ['id' => $portalPostModel->id]));
+
+            $portalSeedModel->adminAddSeed($data['post']);
+
+            $data['post']['id'] = $portalSeedModel->id;
+
+
+
+            $this->success('添加成功!', url('AdminSeed/edit', ['id' => $portalSeedModel->id]));
         }
 
     }
