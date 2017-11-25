@@ -161,15 +161,15 @@ class AdminSeedController extends AdminBaseController
     }
 
     /**
-     * 编辑文章提交
+     * 编辑种子提交
      * @adminMenu(
-     *     'name'   => '编辑文章提交',
+     *     'name'   => '编辑种子提交',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
      *     'order'  => 10000,
      *     'icon'   => '',
-     *     'remark' => '编辑文章提交',
+     *     'remark' => '编辑种子提交',
      *     'param'  => ''
      * )
      */
@@ -198,9 +198,9 @@ class AdminSeedController extends AdminBaseController
     }
 
     /**
-     * 文章删除
+     * 种子删除
      * @adminMenu(
-     *     'name'   => '文章删除',
+     *     'name'   => '种子删除',
      *     'parent' => 'index',
      *     'display'=> false,
      *     'hasView'=> false,
@@ -213,41 +213,38 @@ class AdminSeedController extends AdminBaseController
     public function delete()
     {
         $param           = $this->request->param();
-        $portalPostModel = new PortalPostModel();
+        $portalSeedModel = new PortalSeedModel();
 
         if (isset($param['id'])) {
             $id           = $this->request->param('id', 0, 'intval');
-            $result       = $portalPostModel->where(['id' => $id])->find();
+            $result       = $portalSeedModel->where(['id' => $id])->find();
             $data         = [
                 'object_id'   => $result['id'],
                 'create_time' => time(),
-                'table_name'  => 'portal_post',
-                'name'        => $result['post_title']
+                'table_name'  => 'portal_seed',
+                'name'        => $result['title']
             ];
-            $resultPortal = $portalPostModel
+            $resultPortal =$portalSeedModel
                 ->where(['id' => $id])
-                ->update(['delete_time' => time()]);
-            if ($resultPortal) {
-                Db::name('portal_category_post')->where(['post_id'=>$id])->update(['status'=>0]);
-                Db::name('portal_tag_post')->where(['post_id'=>$id])->update(['status'=>0]);
+                ->update(['gmt_modified' => date('Y-m-d H:i:s'),'status'=>0]);
 
+            if ($resultPortal) {
                 Db::name('recycleBin')->insert($data);
             }
             $this->success("删除成功！", '');
-
         }
 
         if (isset($param['ids'])) {
             $ids     = $this->request->param('ids/a');
-            $recycle = $portalPostModel->where(['id' => ['in', $ids]])->select();
-            $result  = $portalPostModel->where(['id' => ['in', $ids]])->update(['delete_time' => time()]);
+            $recycle = $portalSeedModel->where(['id' => ['in', $ids]])->select();
+            $result  = $portalSeedModel->where(['id' => ['in', $ids]])->update(['gmt_modified' => date('Y-m-d H:i:s'),'status'=>0]);
             if ($result) {
                 foreach ($recycle as $value) {
                     $data = [
                         'object_id'   => $value['id'],
                         'create_time' => time(),
-                        'table_name'  => 'portal_post',
-                        'name'        => $value['post_title']
+                        'table_name'  => 'portal_seed',
+                        'name'        => $value['title']
                     ];
                     Db::name('recycleBin')->insert($data);
                 }
