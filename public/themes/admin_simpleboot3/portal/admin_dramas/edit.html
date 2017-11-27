@@ -184,6 +184,24 @@
                         </td>
                     </tr>
 
+                    <tr>
+                        <th><b>剧集/电影</b></th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[is_movie]" value="0" <if condition="$post.is_movie == 0">checked</if>>&nbsp;&nbsp;剧集</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="checkbox">
+                                <label><input type="radio" name="post[is_movie]" value="1" <if condition="$post.is_movie == 1">checked</if>>&nbsp;&nbsp;电影</label>
+                            </div>
+                        </td>
+                    </tr>
+
                 </table>
             </div>
         </div>

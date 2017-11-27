@@ -14,6 +14,8 @@ CREATE TABLE `cmf_portal_dramas` (
   `cover` VARCHAR(125) NOT NULL  COMMENT '封面',
   `recommended` tinyint(1) NOT NULL  DEFAULT 0 COMMENT '是否推荐,0不推荐 1推荐',
 
+  `is_movie` tinyint(1) NOT NULL  DEFAULT 0 COMMENT '是否为电影,0剧集 1电影',
+
   `user_id` bigint (10) unsigned  NOT NULL  COMMENT '添加人的id',
 
   `status` tinyint(1) NOT NULL  COMMENT  '状态 1为正常 0为删除',
