@@ -179,15 +179,14 @@ s.parentNode.insertBefore(hm, s);
                     <div class="mainBottom-notice">
                         <h1>公告</h1>
                         <p>
-                            SSK字幕组是由一群热爱国外影视剧字幕制作
-                            的网友共同组成的兴趣字幕组我们旨在提供优质字幕以及更佳的观看效果
+                            {$site_info.site_notice|default=''}
                         </p>
                     </div>
 
                     <div class="mainBottom-contact" style="margin-top: 67px;margin-bottom: 12px;">
                         <h1>联系我们</h1>
-                        <p><a href="">新浪微博：SSK字幕组</a></p>
-                        <p>邮箱：sskzmz@126.com</p>
+                        <p>新浪微博：{$site_info.site_weibo|default=''}</p>
+                        <p>邮箱：{$site_info.site_admin_email|default=''}</p>
                     </div>
                 </div>
 
