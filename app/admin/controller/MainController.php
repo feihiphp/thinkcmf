@@ -78,7 +78,7 @@ class MainController extends AdminBaseController
 
         $this->assign('dashboard_widgets', $dashboardWidgets);
         $this->assign('dashboard_widget_plugins', $dashboardWidgetPlugins);
-        $this->assign('has_smtp_setting', empty($smtpSetting) ? false : true);
+        $this->assign('has_smtp_setting',  true);
 
         return $this->fetch();
     }
