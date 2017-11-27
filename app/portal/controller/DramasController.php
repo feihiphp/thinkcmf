@@ -12,7 +12,7 @@ namespace app\portal\controller;
 
 use cmf\controller\HomeBaseController;
 use app\portal\model\PortalCategoryModel;
-use app\portal\service\PostService;
+use app\portal\model\PortalDramasModel;
 use app\portal\model\PortalPostModel;
 use think\Db;
 
@@ -22,54 +22,24 @@ class DramasController extends HomeBaseController
     public function index()
     {
 
-//        $portalCategoryModel = new PortalCategoryModel();
-//        $postService         = new PostService();
-//
-//        $articleId  = $this->request->param('id', 0, 'intval');
-//        $categoryId = $this->request->param('cid', 0, 'intval');
-//        $article    = $postService->publishedArticle($articleId, $categoryId);
-//
-//        if (empty($articleId)) {
-//            abort(404, '文章不存在!');
-//        }
-//
-//
-//        $prevArticle = $postService->publishedPrevArticle($articleId, $categoryId);
-//        $nextArticle = $postService->publishedNextArticle($articleId, $categoryId);
-//
-//        $tplName = 'article';
-//
-//        if (empty($categoryId)) {
-//            $categories = $article['categories'];
-//
-//            if (count($categories) > 0) {
-//                $this->assign('category', $categories[0]);
-//            } else {
-//                abort(404, '文章未指定分类!');
-//            }
-//
-//        } else {
-//            $category = $portalCategoryModel->where('id', $categoryId)->where('status', 1)->find();
-//
-//            if (empty($category)) {
-//                abort(404, '文章不存在!');
-//            }
-//
-//            $this->assign('category', $category);
-//
-//            $tplName = empty($category["one_tpl"]) ? $tplName : $category["one_tpl"];
-//        }
-//
-//        Db::name('portal_post')->where(['id' => $articleId])->setInc('post_hits');
-//
-//
-//        hook('portal_before_assign_article', $article);
-//
-//        $this->assign('article', $article);
-//        $this->assign('prev_article', $prevArticle);
-//        $this->assign('next_article', $nextArticle);
-//
-//        $tplName = empty($article['more']['template']) ? $tplName : $article['more']['template'];
+        $param = $this->request->param();
+        $keyword = isset($param['keyword']) ? $param['keyword'] : '';
+
+        // 查询状态为1的用户数据 并且每页显示10条数据
+        $portalDramasModel = new PortalDramasModel();
+        if (empty($keyword)){
+            $list = $portalDramasModel->where('status',1)->where('is_movie',0)->paginate(1);
+        }else{
+            $list = $portalDramasModel->where('status',1)->where('is_movie',0)->where('title','like','%'.$keyword.'%')->paginate(1);
+        }
+        // 把分页数据赋值给模板变量list
+        $this->assign('list', $list);
+
+
+        $this->assign('keyword', $keyword);
+
+        $this->assign('list', $list);
+        $this->assign('page', $list->render());
 
         return $this->fetch(":dramas");
     }

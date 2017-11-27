@@ -91,46 +91,25 @@ s.parentNode.insertBefore(hm, s);
                 <!--row movie 开始-->
                 <div class="row movie">
 
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
-                    <div class="col-lg-2 col-sm-2 text-center">
-                        <a href="/">
-                            <img src="__TMPL__/public/assets/img/img02.jpg">
-                        </a>
-                    </div>
+                    <foreach name="list" item="vo">
+
+                        <div class="col-lg-2 col-sm-2 text-center">
+                            <a href="{{:url('dramas/view',array('id'=>$vo['id']))}}">
+                                <if condition="empty($vo.cover)">
+                                    <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+
+                                         style="cursor: pointer"/>
+                                    <else/>
+                                    <img src="{:cmf_get_image_preview_url($vo.cover)}"
+                                         style="cursor: pointer"/>
+                                </if>
+                            </a>
+                        </div>
+
+                    </foreach>
+
+
+
 
 
 
@@ -142,18 +121,20 @@ s.parentNode.insertBefore(hm, s);
             <div class="textCenter">
                 <div class="center-main">
                     <div class="nav-paging" style="display: inline-block;">
-                        <ul>
-                            <li class="paging-active"><a href="">1</a></li>
-                            <li><a href="">2</a></li>
-                            <li><a href="">3</a></li>
-                            <li><a href="">4</a></li>
-                            <li><a href="">5</a></li>
-                            <li><a href="">6</a></li>
-                            <li><a href="">7</a></li>
-                            <li><a href="">....</a></li>
-                        </ul>
+
+                        <ul class="pagination">{$page|default=''}</ul>
+                        <!--<ul>-->
+                            <!--<li class="paging-active"><a href="">1</a></li>-->
+                            <!--<li><a href="">2</a></li>-->
+                            <!--<li><a href="">3</a></li>-->
+                            <!--<li><a href="">4</a></li>-->
+                            <!--<li><a href="">5</a></li>-->
+                            <!--<li><a href="">6</a></li>-->
+                            <!--<li><a href="">7</a></li>-->
+                            <!--<li><a href="">....</a></li>-->
+                        <!--</ul>-->
                     </div>
-                    <a href=""><span>下一页</span></a>
+                    <!--<a href=""><span>下一页</span></a>-->
                 </div>
 
             </div>
