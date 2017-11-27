@@ -24,13 +24,17 @@ class DramasController extends HomeBaseController
 
         $param = $this->request->param();
         $keyword = isset($param['keyword']) ? $param['keyword'] : '';
+        $isMovie = isset($param['is_movie']) ? $param['is_movie'] : 0;
+        if ($isMovie !=0){
+            $isMovie =1;
+        }
 
         // 查询状态为1的用户数据 并且每页显示10条数据
         $portalDramasModel = new PortalDramasModel();
         if (empty($keyword)){
-            $list = $portalDramasModel->where('status',1)->where('is_movie',0)->paginate(1);
+            $list = $portalDramasModel->where('status',1)->where('is_movie',$isMovie)->paginate(1);
         }else{
-            $list = $portalDramasModel->where('status',1)->where('is_movie',0)->where('title','like','%'.$keyword.'%')->paginate(1);
+            $list = $portalDramasModel->where('status',1)->where('is_movie',$isMovie)->where('title','like','%'.$keyword.'%')->paginate(1);
         }
         // 把分页数据赋值给模板变量list
         $this->assign('list', $list);
@@ -46,13 +50,29 @@ class DramasController extends HomeBaseController
 
     //最新的。按更新时间排序。
     public function lastupdate(){
+        $param = $this->request->param();
+        $keyword = isset($param['keyword']) ? $param['keyword'] : '';
+
+        // 查询状态为1的用户数据 并且每页显示10条数据
+        $portalDramasModel = new PortalDramasModel();
+        if (empty($keyword)){
+            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->paginate(1);
+        }else{
+            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->where('title','like','%'.$keyword.'%')->paginate(1);
+        }
+        // 把分页数据赋值给模板变量list
+        $this->assign('list', $list);
+
+
+        $this->assign('keyword', $keyword);
+
+        $this->assign('list', $list);
+        $this->assign('page', $list->render());
+
         return $this->fetch(":dramas");
     }
 
-    //电影。只获取电影的数据。
-    public function movie(){
-        return $this->fetch(":dramas");
-    }
+
 
     // 文章点赞
     public function doLike()
