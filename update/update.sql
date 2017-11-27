@@ -31,6 +31,8 @@ CREATE TABLE `cmf_portal_seed` (
   `id` bigint(10) unsigned NOT NULL AUTO_INCREMENT,
   `dramas_id` bigint(10) unsigned NOT NULL  COMMENT '所属剧集',
   `title` varchar(125) NOT NULL COMMENT '标题',
+  `category` char(6) NOT NULL COMMENT '种子制式。生肉、熟肉、字幕',
+
   `bt_url` varchar(256)  NOT NULL  COMMENT 'bt地址',
   `mangnet_url` varchar(256)  NOT NULL  COMMENT '磁力地址',
   `baiduyun_url` varchar(256)  NOT NULL  COMMENT '百度网盘地址',
