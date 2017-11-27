@@ -433,8 +433,9 @@ table {
 
 
 .movieDes{
-	margin-left: 129px;
+	margin: 0 auto;
 	margin-top: 61px;
+	width: 1170px;
 }
 .movieDes-container{
 	margin-left: 20px;

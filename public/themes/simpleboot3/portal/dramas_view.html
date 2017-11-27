@@ -71,7 +71,15 @@ s.parentNode.insertBefore(hm, s);
 
 
 
-            <div class="movieDes-row-left"><img src="__TMPL__/public/assets/img/img02.jpg"/></div>
+            <div class="movieDes-row-left">
+                <if condition="empty($post.cover)">
+                <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+
+                     style="cursor: pointer"/>
+                <else/>
+                <img src="{:cmf_get_image_preview_url($post.cover)}"
+                     style="cursor: pointer"/>
+            </if></div>
             <div class="movieDes-row-right">
                 <ul>
                     <li><span>导演:</span>{$post.director} </li>
