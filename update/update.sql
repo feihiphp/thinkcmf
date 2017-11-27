@@ -8,6 +8,8 @@ CREATE TABLE `cmf_portal_dramas` (
   `screenwriter` varchar(125)  NOT NULL  COMMENT '编剧',
   `performer` varchar(256)  NOT NULL  COMMENT '演员',
 
+  `country` varchar(125)  NOT NULL  COMMENT '国家/地区',
+
   `air_time` datetime  NOT NULL  COMMENT '开播时间',
   `dramas_introduction` text  NOT NULL  COMMENT '剧集介绍',
   `dramas_state` tinyint(1)  NOT NULL  COMMENT '剧集状态 0 停播 1在播 2季终',

@@ -73,6 +73,16 @@ class DramasController extends HomeBaseController
     }
 
 
+    public function view(){
+        $id = $this->request->param('id', 0, 'intval');
+
+        $portalDramasModel = new PortalDramasModel();
+        $post            = $portalDramasModel->where('id', $id)->find();
+        $this->assign('post', $post);
+        return $this->fetch(":dramas_view");
+    }
+
+
 
     // 文章点赞
     public function doLike()

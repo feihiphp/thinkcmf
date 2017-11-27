@@ -94,7 +94,7 @@ s.parentNode.insertBefore(hm, s);
                     <foreach name="list" item="vo">
 
                         <div class="col-lg-2 col-sm-2 text-center">
-                            <a href="{{:url('dramas/view',array('id'=>$vo['id']))}}">
+                            <a href="{:url('dramas/view',array('id'=>$vo['id']))}">
                                 <if condition="empty($vo.cover)">
                                     <img src="__TMPL__/public/assets/images/default-thumbnail.png"
 
