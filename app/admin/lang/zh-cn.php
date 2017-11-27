@@ -79,6 +79,10 @@ return [
     "WEBSITE_STATISTICAL_CODE"           => '统计代码',
     "SINA_WEIBO"           => '新浪微博',
     "SITE_NOTICE"           => '公告',
+    "CONTENT_0"           => '今日推荐',
+    "CONTENT_1"           => '推荐位1',
+    "CONTENT_2"           => '推荐位2',
+    "CONTENT_3"           => '推荐位3',
 
     "WEBSITE_COPYRIGHT_INFOMATION"       => '版权信息',
     "WEBSITE_SEO_TITLE"                  => "SEO标题",
