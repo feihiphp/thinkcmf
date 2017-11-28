@@ -66,9 +66,18 @@ s.parentNode.insertBefore(hm, s);
                 <a href=""><div class="mainTop-left-cont">
                     <div class="today-recommendation">
                         <div class="block"><h1 class="borderBottom">今日推荐</h1></div>
-                        <a href=""><img src="__TMPL__/public/assets/img/img01.jpg"/></a>
-                        <div class="block-bottom"><p>少年韦尼亚明正面临着一次神
-                            秘的危机，他提出的疑问扰得他的母亲、同学和整所高中鸡犬不宁。</p></div>
+                        <slides id="3">
+
+                        <a href="{$vo.url}">
+
+
+                                <img src="{:cmf_get_image_preview_url($vo.image)}"/>
+
+
+                        </a>
+                        <div class="block-bottom"><p>{$vo.content|default=''}</p>
+                        </div>
+                        </slides>
                     </div>
                 </div></a>
                 <div class="mainTop-right-cont">
