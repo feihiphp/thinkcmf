@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="SSK字幕组">
+    <meta name="description" content="SSK字幕组是最好的字幕组之一">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="ZWtXMTFkWFQ2Ig9fAxIqEx0bZ1R0NAIxFgplfAlcOw4gAAF2RgwBAw==">
+    <title>SSK字幕组</title>
+    <script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
+    <link rel="shortcut icon" href="__TMPL__/public/assets/img/favicon.ico" type="image/x-icon" />
+    <link href="__TMPL__/public/assets/css/main.css" rel="stylesheet">
+    <!-- sskzmz.com Baidu tongji analytics   百度统计 -->
+    <script>
+var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "//hm.baidu.com/hm.js?a7f702288afc433a728d4f840005f082";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<body>
+<!--fixed nav start-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="/">
+                <img src="__TMPL__/public/assets/img/LOGO.png" alt="logo图标" />
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="navbar-collapse coll">
+            <form class="navbar-form navbar-right" action="/index/search" role="search">
+                <div class="form-group">
+                    <input name="tab" class="form-control nav-search" placeholder="搜索" type="text">
+                </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="/">首页</a></li>
+                <li><a href="{:url('portal/dramas/lastupdate')}">最新</a></li>
+                <li><a href="{:url('portal/dramas/index',array('is_movie'=>1))}">电影</a></li>
+                <li><a href="{:url('portal/dramas/index',array('is_movie'=>0))}">剧集</a></li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+<!--fixed nav end	-->
+
+<div class="wrap">
+    <div class="movieDes">
+        <div class="movieDes-container">
+            <h3>{$post.dramas.title}</h3>
+            <span>{$post.title}</span>
+        </div>
+
+        <div class="movieDes-row">
+
+
+
+            <div class="movieDes-row-left">
+                <if condition="empty($post.cover)">
+                <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+
+                     style="cursor: pointer"/>
+                <else/>
+                <img src="{:cmf_get_image_preview_url($post.cover)}"
+                     style="cursor: pointer"/>
+            </if></div>
+            <div class="movieDes-row-right">
+                <ul>
+                    <li><span>{$post.category}:</span>{$post.dramas.title}{$post.title} </li>
+                    <li><span>bt地址:</span>{$post.bt_url}</li>
+                    <li><span>磁力地址:</span>{$post.mangnet_url} </li>
+                    <li><span>百度云盘:</span>{$post.baiduyun_url}</li>
+                    <li><span>其他云盘:</span>{$post.otheryun_url}</li>
+                    <li><span>微云地址:</span>{$post.weiyun_url}</li>
+                    <li><span>e2dk:</span>{$post.ed2k}</li>
+                    <li><span>文件大小:</span>{$post.file_size}M</li>
+                    <li><span>下载量:</span>{$post.down_num}</li>
+                </ul>
+
+                <p>
+                    下载说明:
+                    百度云盘密码:{$post.baiduyun_password}
+                </p>
+            </div>
+        </div>
+        <!--剧情介绍-->
+        <div class="backstage">
+            <h3>广告位</h3>
+            广告位广告位广告位广告位广告位广告位广告位广告位广告位广告位广告位广告位广告位广告位
+        </div>
+
+
+
+
+    </div>
+
+
+</script>
+    <script type="text/javascript">
+	$(document).ready(function() {
+    $(".collapsed").click(function() {
+        $(".coll").toggle(700);
+    });
+});//点击隐藏显示div
+</script>
+</body>
+</html>
