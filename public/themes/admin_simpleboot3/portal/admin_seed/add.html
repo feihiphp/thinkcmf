@@ -134,14 +134,7 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <th>字幕类型</th>
-                        <td>
-                            <textarea class="form-control" name="post[subtitles_type]" style="height: 50px;"
-                                      placeholder="请填写字幕类型"></textarea>
-                        </td>
-                    </tr>
-
+                  
                     <tr>
                         <th>字幕地址</th>
                         <td>
@@ -230,27 +223,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <th><b>字幕类型</b></th>
+                        <th >字幕类型<span class="form-required">*</span></th>
+
                     </tr>
                     <tr>
                         <td>
-                            <div class="checkbox">
-                                <label><input type="radio" name="post[dramas_state]" value="1" checked>&nbsp;&nbsp;在播</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="radio" name="post[dramas_state]" value="2">&nbsp;&nbsp;季终</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="checkbox">
-                                <label><input type="radio" name="post[dramas_state]" value="0">&nbsp;&nbsp;停播</label>
-                            </div>
+                            <select name="post[subtitles_type]" class="form-control">
+
+                                <option value="中英双语" <if condition="$post.episode == '中英双语' "> selected</if> >中英双语</option>
+                                <option value="英文字幕" <if condition="$post.episode == '英文字幕'"> selected</if>>英文字幕</option>
+                                <option value="中文字幕" <if condition="$post.episode == '中文字幕'"> selected</if> >中文字幕</option>
+                            </select>
+
+
+
+
                         </td>
                     </tr>
 
