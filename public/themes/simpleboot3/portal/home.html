@@ -77,21 +77,18 @@ s.parentNode.insertBefore(hm, s);
                             <h1>生肉资源</h1>
                             <div class="platetext">
                                 <ul>
-                                    <li>
-                                        <span class="platetext-title">生肉</span>
-                                        <span>权利的游戏</span>
-                                        <span>Game of Thones S07E01</span>
-                                    </li>
-                                    <li>
-                                        <span class="platetext-title">生肉</span>
-                                        <span>权利的游戏</span>
-                                        <span>Game of Thones S07E01</span>
-                                    </li>
-                                    <li>
-                                        <span class="platetext-title">生肉</span>
-                                        <span>权利的游戏</span>
-                                        <span>Game of Thones S07E01</span>
-                                    </li>
+                                    <foreach name="shengrou" item="vo">
+
+                                        <li>
+                                            <a href="{:url('portal/seed/view',array('id'=>$vo['id']))}">
+
+                                                <span class="platetext-title">生肉</span>
+                                                <span>{$vo.dramas.title}</span>
+                                                <span>{$vo.title}</span>
+                                            </a>
+                                        </li>
+
+                                    </foreach>
                                 </ul>
                             </div>
                         </div>
@@ -102,21 +99,22 @@ s.parentNode.insertBefore(hm, s);
                             <h1>熟肉下载</h1>
                             <div class="platetext">
                                 <ul>
-                                    <li>
-                                        <span class="platetext-title">熟肉</span>
-                                        <span>权利的游戏</span>
-                                        <span>Game of Thrones S07E01</span>
-                                    </li>
-                                    <li>
-                                        <span class="platetext-title">熟肉</span>
-                                        <span>美国恐怖故事</span>
-                                        <span>American Horror Story S07E01</span>
-                                    </li>
-                                    <li>
-                                        <span class="platetext-title">熟肉</span>
-                                        <span>谋杀回溯</span>
-                                        <span>Rellik S01E01</span>
-                                    </li>
+
+                                    <foreach name="shurou" item="vo">
+
+                                        <li>
+                                            <a href="{:url('portal/seed/view',array('id'=>$vo['id']))}">
+
+                                                <span class="platetext-title">熟肉</span>
+                                                <span>{$vo.dramas.title}</span>
+                                                <span>{$vo.title}</span>
+                                            </a>
+                                        </li>
+
+                                    </foreach>
+
+
+
                                 </ul>
                             </div>
                         </div>
@@ -153,21 +151,21 @@ s.parentNode.insertBefore(hm, s);
                             <h1>字幕</h1>
                             <div class="platetext">
                                 <ul>
-                                    <li>
-                                        <span class="platetext-title">字幕</span>
-                                        <span>权利的游戏</span>
-                                        <span>Game of Thrones S07E01</span>
-                                    </li>
-                                    <li>
-                                        <span class="platetext-title">字幕</span>
-                                        <span>美国恐怖故事</span>
-                                        <span>American Horror Story S07E01</span>
-                                    </li>
-                                    <li>
-                                        <span class="platetext-title">字幕</span>
-                                        <span>谋杀回溯</span>
-                                        <span>Rellik S01E01</span>
-                                    </li>
+
+                                    <foreach name="zimu" item="vo">
+
+                                        <li>
+                                            <a href="{:url('portal/seed/view',array('id'=>$vo['id']))}">
+
+                                                <span class="platetext-title">字幕</span>
+                                                <span>{$vo.dramas.title}</span>
+                                                <span>{$vo.title}</span>
+                                            </a>
+                                        </li>
+
+                                    </foreach>
+
+
                                 </ul>
                             </div>
                         </div>

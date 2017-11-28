@@ -134,7 +134,7 @@
                         </td>
                     </tr>
 
-                  
+
                     <tr>
                         <th>字幕地址</th>
                         <td>
@@ -164,11 +164,17 @@
                     <tr>
                         <td>
                             <div style="text-align: center;">
-                                <input type="hidden" name="post[cover]" id="thumbnail" value="">
+                                <input type="hidden" name="post[cover]" id="thumbnail" value="{$dramas.cover}">
                                 <a href="javascript:uploadOneImage('图片上传','#thumbnail');">
-                                    <img src="__TMPL__/public/assets/images/default-thumbnail.png"
-                                         id="thumbnail-preview"
-                                         width="135" style="cursor: pointer"/>
+                                    <if condition="empty($dramas.cover)">
+                                        <img src="__TMPL__/public/assets/images/default-thumbnail.png"
+                                             id="thumbnail-preview"
+                                             width="135" style="cursor: pointer"/>
+                                        <else/>
+                                        <img src="{:cmf_get_image_preview_url($dramas.cover)}"
+                                             id="thumbnail-preview"
+                                             width="135" style="cursor: pointer"/>
+                                    </if>
                                 </a>
                                 <input type="button" class="btn btn-sm btn-cancel-thumbnail" value="取消图片">
                             </div>
@@ -230,9 +236,9 @@
                         <td>
                             <select name="post[subtitles_type]" class="form-control">
 
-                                <option value="中英双语" <if condition="$post.episode == '中英双语' "> selected</if> >中英双语</option>
-                                <option value="英文字幕" <if condition="$post.episode == '英文字幕'"> selected</if>>英文字幕</option>
-                                <option value="中文字幕" <if condition="$post.episode == '中文字幕'"> selected</if> >中文字幕</option>
+                                <option value="中英双语" selected >中英双语</option>
+                                <option value="英文字幕" >英文字幕</option>
+                                <option value="中文字幕" >中文字幕</option>
                             </select>
 
 

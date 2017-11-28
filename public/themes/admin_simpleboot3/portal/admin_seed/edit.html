@@ -71,9 +71,9 @@
                         <th width="100">种子制式<span class="form-required">*</span></th>
                         <td>
                             <select name="post[category]" class="form-control">
-                                <option value="生肉">生肉</option>
-                                <option value="熟肉">熟肉</option>
-                                <option value="字幕">字幕</option>
+                                <option value="生肉" <if condition="$post.category == '生肉' ">selected</if> >生肉</option>
+                                <option value="熟肉" <if condition="$post.category == '熟肉' ">selected</if>>熟肉</option>
+                                <option value="字幕" <if condition="$post.category == '字幕' ">selected</if>>字幕</option>
                             </select>
 
 
@@ -169,7 +169,7 @@
                     <tr>
                         <td>
                             <div style="text-align: center;">
-                                <input type="hidden" name="post[cover]" id="thumbnail" value="">
+                                <input type="hidden" name="post[cover]" id="thumbnail" value="{$post.cover}">
                                 <a href="javascript:uploadOneImage('图片上传','#thumbnail');">
                                     <if condition="empty($post.cover)">
                                         <img src="__TMPL__/public/assets/images/default-thumbnail.png"
