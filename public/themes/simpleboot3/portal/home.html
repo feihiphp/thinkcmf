@@ -137,21 +137,15 @@ s.parentNode.insertBefore(hm, s);
                 <a href="">
                     <div class="mainBottom-left-cont">
                         <div class="mainBottom-left-block">
-                            <div class="img-block blo1">
-                                <img src="__TMPL__/public/assets/img/img02.jpg"/>
-                            </div>
-                            <div class="img-block blo2">
-                                <img src="__TMPL__/public/assets/img/img03.jpg"/>
-                            </div>
-                            <div class="img-block blo3">
-                                <img src="__TMPL__/public/assets/img/img04.jpg"/>
-                            </div>
-                            <div class="img-block blo4">
-                                <img src="__TMPL__/public/assets/img/img05.jpg"/>
-                            </div>
-                            <div class="img-block blo5">
-                                <img src="__TMPL__/public/assets/img/img06.jpg"/>
-                            </div>
+
+                            <slides id="4">
+                                <a href="{$vo.url}">
+                                    <div class="img-block blo1">
+                                        <img src="{:cmf_get_image_preview_url($vo.image)}"/>
+                                    </div>
+                                </a>
+
+                            </slides>
                             <div class="update-title">
                                 <h1>本周更新</h1>
                             </div>
