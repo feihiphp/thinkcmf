@@ -8,7 +8,7 @@
     <meta name="csrf-param" content="_csrf">
     <meta name="csrf-token" content="ZWtXMTFkWFQ2Ig9fAxIqEx0bZ1R0NAIxFgplfAlcOw4gAAF2RgwBAw==">
     <title>SSK字幕组</title>
-    <script src="__TMPL__/public/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
     <link rel="shortcut icon" href="__TMPL__/public/assets/img/favicon.ico" type="image/x-icon" />
     <link href="__TMPL__/public/assets/css/main.css" rel="stylesheet">
     <!-- sskzmz.com Baidu tongji analytics   百度统计 -->
@@ -102,129 +102,156 @@ s.parentNode.insertBefore(hm, s);
             <h3>资源下载</h3>
             <div class="season">
                 <ul class="clearfix">
-                    <li id="tab1" class="actives" onclick="toggle(this)">第一季</li>
-                    <li id="tab2" onclick="toggle(this)">第二季</li>
-                    <li id="tab3" onclick="toggle(this)">第三季</li>
-                    <li id="tab4" onclick="toggle(this)">第四季</li>
+
+                    <foreach name="seasonList" item="vo">
+
+                        <if condition="$vo.season == 1">
+                            <li id="tab{$vo['season']}"  class="actives" onclick="toggle({$vo['season']})">第{:numToWord($vo['season'])}季</li>
+
+                            <else/>
+
+                            <li id="tab{$vo['season']}" onclick="toggle({$vo['season']})">第{:numToWord($vo['season'])}季</li>
+
+
+                        </if>
+
+
+                    </foreach>
+
                 </ul>
             </div>
             <div id="tablecontainer">
-                <div id="contents1" style="display: block;">
+                <div>
 
                     <table class="table">
                         <tbody>
-                        <tr>
-                            <td width="60%">名称:</td>
-                            <td width="10%">版本</td>
-                            <td width="10%">大小(M)</td>
-                            <td width="10%">格式</td>
-                            <td width="10%">下载</td>
+
+                        <tr  >
+                        <td width="60%">名称:</td>
+                        <td width="10%">版本</td>
+                        <td width="10%">大小(M)</td>
+                        <td width="10%">格式</td>
+                        <td width="10%">下载</td>
 
                         </tr>
-                        <tr class="table-tr">
-                            <td width="60%" class="table-td">逍遥法外.How to Get Away with Murder.S02E01</td>
-                            <td width="10%">生肉</td>
-                            <td width="10%">560</td>
-                            <td width="10%">MKV</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        <tr>
-                            <td width="60%" class="table-td">逍遥法外.How to Get Away with Murder.S02E01 720P</td>
-                            <td width="10%">熟肉</td>
-                            <td width="10%">780</td>
-                            <td width="10%">MP4</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
+
+                        <foreach name="seedList" item="vo">
+
+                            <if condition="$vo.season == 1">
+                                <tr class="tr{$vo.season} table-tr" >
+                                    <td width="60%" >{$vo.dramas.title}{$vo.title}</td>
+                                    <td width="10%">{$vo.category}</td>
+                                    <td width="10%">{$vo.file_size}</td>
+                                    <td width="10%">MKV</td>
+                                    <td width="10%"><a href="/" style="color: #000;">链接</a></td>
+                                </tr>
+
+                            <else/>
+                                <tr class="tr{$vo.season} table-tr" style="display: none" >
+                                    <td width="60%" >{$vo.dramas.title}{$vo.title}</td>
+                                    <td width="10%">{$vo.category}</td>
+                                    <td width="10%">{$vo.file_size}</td>
+                                    <td width="10%">MKV</td>
+                                    <td width="10%"><a href="/" style="color: #000;">链接</a></td>
+                                </tr>
+                            </if>
+
+
+
+                        </foreach>
+
+
+
                         </tbody>
                     </table>
                 </div>
 
-                <div id="contents2" style="display: none;">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td width="60%">名称:</td>
-                            <td width="10%">版本</td>
-                            <td width="10%">大小(M)</td>
-                            <td width="10%">格式</td>
-                            <td width="10%">下载</td>
+                <!--<div id="contents2" style="display: none;">-->
+                    <!--<table class="table">-->
+                        <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td width="60%">名称:</td>-->
+                            <!--<td width="10%">版本</td>-->
+                            <!--<td width="10%">大小(M)</td>-->
+                            <!--<td width="10%">格式</td>-->
+                            <!--<td width="10%">下载</td>-->
 
-                        </tr>
-                        <tr class="table-tr">
-                            <td width="60%" class="table-td">绝地翻盘.How to Get Away with Murder.S02E01</td>
-                            <td width="10%">生肉</td>
-                            <td width="10%">560</td>
-                            <td width="10%">MKV</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        <tr>
-                            <td width="60%" class="table-td">绝地翻盘.How to Get Away with Murder.S02E01 720P</td>
-                            <td width="10%">熟肉</td>
-                            <td width="10%">780</td>
-                            <td width="10%">MP4</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <!--</tr>-->
+                        <!--<tr class="table-tr">-->
+                            <!--<td width="60%" class="table-td">绝地翻盘.How to Get Away with Murder.S02E01</td>-->
+                            <!--<td width="10%">生肉</td>-->
+                            <!--<td width="10%">560</td>-->
+                            <!--<td width="10%">MKV</td>-->
+                            <!--<td width="10%"><a href="/" style="color: #000;">链接</a></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td width="60%" class="table-td">绝地翻盘.How to Get Away with Murder.S02E01 720P</td>-->
+                            <!--<td width="10%">熟肉</td>-->
+                            <!--<td width="10%">780</td>-->
+                            <!--<td width="10%">MP4</td>-->
+                            <!--<td width="10%"><a href="/" style="color: #000;">链接</a></td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
 
-                <div id="contents3" style="display: none;">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td width="60%">名称:</td>
-                            <td width="10%">版本</td>
-                            <td width="10%">大小(M)</td>
-                            <td width="10%">格式</td>
-                            <td width="10%">下载</td>
+                <!--<div id="contents3" style="display: none;">-->
+                    <!--<table class="table">-->
+                        <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td width="60%">名称:</td>-->
+                            <!--<td width="10%">版本</td>-->
+                            <!--<td width="10%">大小(M)</td>-->
+                            <!--<td width="10%">格式</td>-->
+                            <!--<td width="10%">下载</td>-->
 
-                        </tr>
-                        <tr class="table-tr">
-                            <td width="60%" class="table-td">生活大爆炸.How to Get Away with Murder.S02E01</td>
-                            <td width="10%">生肉</td>
-                            <td width="10%">560</td>
-                            <td width="10%">MKV</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        <tr>
-                            <td width="60%" class="table-td">生活大爆炸.How to Get Away with Murder.S02E01 720P</td>
-                            <td width="10%">熟肉</td>
-                            <td width="10%">780</td>
-                            <td width="10%">MP4</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <!--</tr>-->
+                        <!--<tr class="table-tr">-->
+                            <!--<td width="60%" class="table-td">生活大爆炸.How to Get Away with Murder.S02E01</td>-->
+                            <!--<td width="10%">生肉</td>-->
+                            <!--<td width="10%">560</td>-->
+                            <!--<td width="10%">MKV</td>-->
+                            <!--<td width="10%"><a href="/" style="color: #000;">链接</a></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td width="60%" class="table-td">生活大爆炸.How to Get Away with Murder.S02E01 720P</td>-->
+                            <!--<td width="10%">熟肉</td>-->
+                            <!--<td width="10%">780</td>-->
+                            <!--<td width="10%">MP4</td>-->
+                            <!--<td width="10%"><a href="/" style="color: #000;">链接</a></td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
 
-                <div id="contents4" style="display: none;">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td width="60%">名称:</td>
-                            <td width="10%">版本</td>
-                            <td width="10%">大小(M)</td>
-                            <td width="10%">格式</td>
-                            <td width="10%">下载</td>
+                <!--<div id="contents4" style="display: none;">-->
+                    <!--<table class="table">-->
+                        <!--<tbody>-->
+                        <!--<tr>-->
+                            <!--<td width="60%">名称:</td>-->
+                            <!--<td width="10%">版本</td>-->
+                            <!--<td width="10%">大小(M)</td>-->
+                            <!--<td width="10%">格式</td>-->
+                            <!--<td width="10%">下载</td>-->
 
-                        </tr>
-                        <tr class="table-tr">
-                            <td width="60%" class="table-td">难过的一天.How to Get Away with Murder.S02E01</td>
-                            <td width="10%">生肉</td>
-                            <td width="10%">560</td>
-                            <td width="10%">MKV</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        <tr>
-                            <td width="60%" class="table-td">难过的一天.How to Get Away with Murder.S02E01 720P</td>
-                            <td width="10%">熟肉</td>
-                            <td width="10%">780</td>
-                            <td width="10%">MP4</td>
-                            <td width="10%"><a href="/" style="color: #000;">链接</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <!--</tr>-->
+                        <!--<tr class="table-tr">-->
+                            <!--<td width="60%" class="table-td">难过的一天.How to Get Away with Murder.S02E01</td>-->
+                            <!--<td width="10%">生肉</td>-->
+                            <!--<td width="10%">560</td>-->
+                            <!--<td width="10%">MKV</td>-->
+                            <!--<td width="10%"><a href="/" style="color: #000;">链接</a></td>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<td width="60%" class="table-td">难过的一天.How to Get Away with Murder.S02E01 720P</td>-->
+                            <!--<td width="10%">熟肉</td>-->
+                            <!--<td width="10%">780</td>-->
+                            <!--<td width="10%">MP4</td>-->
+                            <!--<td width="10%"><a href="/" style="color: #000;">链接</a></td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                <!--</div>-->
 
 
 
@@ -236,16 +263,13 @@ s.parentNode.insertBefore(hm, s);
 
     </div>
     <script type="text/javascript">
-	function toggle(wo) {
-				 var conall=tablecontainer.children;
-
-				 for (var i=0;i<conall.length;i++) {
-				 	conall[i].style.display="none";
-				 }
-				 var con="contents"+wo.id.slice(-1);
-				 var con=document.getElementById(con);
-				 con.style.display="block";
-	}//tab点击切换效果
+	function toggle(season) {
+	            $(".table-tr").hide();
+	            $(".tr"+season).show();
+	            $(".actives").removeClass('actives');
+	            $("#tab"+season).addClass('actives');
+	}
+	//tab点击切换效果
 
 
 </script>

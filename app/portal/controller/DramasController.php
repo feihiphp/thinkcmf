@@ -13,6 +13,7 @@ namespace app\portal\controller;
 use cmf\controller\HomeBaseController;
 use app\portal\model\PortalCategoryModel;
 use app\portal\model\PortalDramasModel;
+use app\portal\model\PortalSeedModel;
 use app\portal\model\PortalPostModel;
 use think\Db;
 
@@ -78,7 +79,34 @@ class DramasController extends HomeBaseController
 
         $portalDramasModel = new PortalDramasModel();
         $post            = $portalDramasModel->where('id', $id)->find();
+
+        //查询种子。
+        $portalSeedModel = new PortalSeedModel();
+        //可以分为多少季
+        $seasonList            = $portalSeedModel->field('season,count(id)')->where('dramas_id', $id)->group('season')->order('season asc')->select();
+
+        $seedList            = $portalSeedModel->where('dramas_id', $id)->order('season asc,episode asc')->select();
+//
+//
+//        print_r($seedList);
+//
+//        foreach ($seedList as $item){
+//            var_dump($item);
+//            echo "</br>";
+//        }
+
+
+
+
+
+
         $this->assign('post', $post);
+        $this->assign('seasonList', $seasonList);
+        $this->assign('seedList', $seedList);
+//
+
+
+
         return $this->fetch(":dramas_view");
     }
 
