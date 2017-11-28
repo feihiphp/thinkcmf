@@ -18,6 +18,38 @@ use app\admin\model\ThemeModel;
 
 class AdminSeedController extends AdminBaseController
 {
+
+    //没有传递剧集参数的页面。
+    public function all(){
+
+        $param = $this->request->param();
+
+        $keyword = $this->request->param('keyword', "");
+
+        // 查询状态为1的用户数据 并且每页显示10条数据
+        $portalSeedModel = new PortalSeedModel();
+
+
+        if (empty($keyword)){
+            $list = $portalSeedModel->where(['status'=>1])->paginate(10);
+        }else{
+            $list = $portalSeedModel->where(['status'=>1])->where('title','like','%'.$keyword.'%')->paginate(10);
+        }
+
+
+
+        // 把分页数据赋值给模板变量list
+        $this->assign('list', $list);
+
+
+        $this->assign('keyword', isset($param['keyword']) ? $param['keyword'] : '');
+        $this->assign('list', $list);
+        $this->assign('page', $list->render());
+
+
+        return $this->fetch();
+
+    }
     /**
      * xx 剧集的种子列表。
      * @adminMenu(

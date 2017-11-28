@@ -4,17 +4,15 @@
 <div class="wrap js-check-wrap">
     <ul class="nav nav-tabs">
         <li class="active"><a href="javascript:;">
-            {$dramas.title}的
-             所有种子</a></li>
 
-        <li>
-            <a href="{:url('AdminSeed/add',['dramas_id'=>$dramas.id])}">添加种子</a>
-
+             所有种子</a>
         </li>
 
 
+
+
     </ul>
-    <form class="well form-inline margin-top-20" method="post" action="{:url('AdminSeed/index',array('dramas_id'=>$dramas_id))}">
+    <form class="well form-inline margin-top-20" method="post" action="{:url('AdminSeed/all')}">
         标题:
         <input type="text" class="form-control" name="keyword" style="width: 200px;"
                value="{$keyword|default=''}" placeholder="请输入标题...">
