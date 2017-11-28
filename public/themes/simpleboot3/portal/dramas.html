@@ -68,18 +68,25 @@ s.parentNode.insertBefore(hm, s);
                 <div class="mainTop-left-cont">
                     <div class="today-recommendation">
 
-                        <a href=""><img src="__TMPL__/public/assets/img/img01.jpg"/></a>
+
+                        <slides id="5">
+                            <a href="{$vo.url}"><img src="{:cmf_get_image_preview_url($vo.image)}"/></a>
+                        </slides>
 
                     </div>
                 </div>
                 <div class="mainTop-right-cont">
 
                     <div class="main-plate">
-                        <img src="__TMPL__/public/assets/img/blockimg01.jpg" style="width: 600px;height: 285px;border-radius:10px ;">
+                        <slides id="6">
+                            <a href="{$vo.url}"><img src="{:cmf_get_image_preview_url($vo.image)}" style="width: 600px;height: 285px;border-radius:10px ;"/></a>
+                        </slides>
                     </div>
 
                     <div class="main-plate" style="margin-top: 80px;">
-                        <img src="__TMPL__/public/assets/img/blockimg01.jpg" style="width: 600px;height: 285px;border-radius:10px ;">
+                        <slides id="7">
+                            <a href="{$vo.url}"><img src="{:cmf_get_image_preview_url($vo.image)}" style="width: 600px;height: 285px;border-radius:10px ;"/></a>
+                        </slides>
                     </div>
 
 
