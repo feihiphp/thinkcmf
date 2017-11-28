@@ -33,9 +33,9 @@ class DramasController extends HomeBaseController
         // 查询状态为1的用户数据 并且每页显示10条数据
         $portalDramasModel = new PortalDramasModel();
         if (empty($keyword)){
-            $list = $portalDramasModel->where('status',1)->where('is_movie',$isMovie)->paginate(1);
+            $list = $portalDramasModel->where('status',1)->where('is_movie',$isMovie)->paginate(6);
         }else{
-            $list = $portalDramasModel->where('status',1)->where('is_movie',$isMovie)->where('title','like','%'.$keyword.'%')->paginate(1);
+            $list = $portalDramasModel->where('status',1)->where('is_movie',$isMovie)->where('title','like','%'.$keyword.'%')->paginate(6);
         }
         // 把分页数据赋值给模板变量list
         $this->assign('list', $list);
@@ -57,9 +57,32 @@ class DramasController extends HomeBaseController
         // 查询状态为1的用户数据 并且每页显示10条数据
         $portalDramasModel = new PortalDramasModel();
         if (empty($keyword)){
-            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->paginate(1);
+            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->paginate(6);
         }else{
-            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->where('title','like','%'.$keyword.'%')->paginate(1);
+            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->where('title','like','%'.$keyword.'%')->paginate(6);
+        }
+        // 把分页数据赋值给模板变量list
+        $this->assign('list', $list);
+
+
+        $this->assign('keyword', $keyword);
+
+        $this->assign('list', $list);
+        $this->assign('page', $list->render());
+
+        return $this->fetch(":dramas");
+    }
+
+    public function search(){
+        $param = $this->request->param();
+        $keyword = isset($param['keyword']) ? $param['keyword'] : '';
+
+        // 查询状态为1的用户数据 并且每页显示10条数据
+        $portalDramasModel = new PortalDramasModel();
+        if (empty($keyword)){
+            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->paginate(6);
+        }else{
+            $list = $portalDramasModel->where('status',1)->order('gmt_modified desc')->where('title','like','%'.$keyword.'%')->paginate(6);
         }
         // 把分页数据赋值给模板变量list
         $this->assign('list', $list);
@@ -86,19 +109,6 @@ class DramasController extends HomeBaseController
         $seasonList            = $portalSeedModel->field('season,count(id)')->where('dramas_id', $id)->group('season')->order('season asc')->select();
 
         $seedList            = $portalSeedModel->where('dramas_id', $id)->order('season asc,episode asc')->select();
-//
-//
-//        print_r($seedList);
-//
-//        foreach ($seedList as $item){
-//            var_dump($item);
-//            echo "</br>";
-//        }
-
-
-
-
-
 
         $this->assign('post', $post);
         $this->assign('seasonList', $seasonList);
