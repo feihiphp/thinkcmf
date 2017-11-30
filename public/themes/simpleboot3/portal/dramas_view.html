@@ -100,7 +100,7 @@
                                     <td width="60%" >{$vo.dramas.title}{$vo.title}</td>
                                     <td width="10%">{$vo.category}</td>
                                     <td width="10%">{$vo.file_size}</td>
-                                    <td width="10%">MKV</td>
+                                    <td width="10%">{$vo.file_format}</td>
                                     <td width="10%"><a href="{:url('portal/seed/view',array('id'=>$vo['id']))}" style="color: #000;">链接</a></td>
                                 </tr>
 
@@ -109,7 +109,7 @@
                                     <td width="60%" >{$vo.dramas.title}{$vo.title}</td>
                                     <td width="10%">{$vo.category}</td>
                                     <td width="10%">{$vo.file_size}</td>
-                                    <td width="10%">MKV</td>
+                                    <td width="10%">{$vo.file_format}</td>
                                     <td width="10%"><a href="{:url('portal/seed/view',array('id'=>$vo['id']))}" style="color: #000;">链接</a></td>
                                 </tr>
                             </if>
