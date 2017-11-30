@@ -1,54 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="SSK字幕组">
-    <meta name="description" content="SSK字幕组是最好的字幕组之一">
-    <meta name="csrf-param" content="_csrf">
-    <meta name="csrf-token" content="ZWtXMTFkWFQ2Ig9fAxIqEx0bZ1R0NAIxFgplfAlcOw4gAAF2RgwBAw==">
-    <title>SSK字幕组</title>
-    <script src="__TMPL__/public/assets/js/jquery-1.10.2.min.js"></script>
-    <link rel="shortcut icon" href="__TMPL__/public/assets/img/favicon.ico" type="image/x-icon" />
-    <link href="__TMPL__/public/assets/css/main.css" rel="stylesheet">
-    
+    <title>首页 {$site_info.site_name|default=''}</title>
+    <meta name="keywords" content="{$site_info.site_seo_keywords|default=''}"/>
+    <meta name="description" content="{$site_info.site_seo_description|default=''}">
+    <include file="public@head_sskzmz"/>
+    <style>
+
+
+    </style>
+    <hook name="before_head_end"/>
 </head>
+
+
 <body>
-<!--fixed nav start-->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
 
-            <a class="navbar-brand" href="/">
-                <img src="__TMPL__/public/assets/img/LOGO.png" alt="logo图标" />
-            </a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
+<include file="public@nav_sskzmz"/>
 
-        <div class="navbar-collapse coll">
-            <form class="navbar-form navbar-right" action="{:url('portal/dramas/search')}" role="search">
-                <div class="form-group">
-                    <input name="keyword" class="form-control nav-search" placeholder="搜索" type="text">
-                </div>
-            </form>
-
-            <ul class="nav navbar-nav navbar-left">
-                <li><a href="/">首页</a></li>
-                <li><a href="{:url('portal/dramas/lastupdate')}">最新</a></li>
-                <li><a href="{:url('portal/dramas/index',array('is_movie'=>1))}">电影</a></li>
-                <li><a href="{:url('portal/dramas/index',array('is_movie'=>0))}">剧集</a></li>
-            </ul>
-
-
-        </div>
-    </div>
-</nav>
-<!--fixed nav end	-->
 
 <div class="wrap">
     <div class="movieDes">
@@ -72,7 +40,7 @@
             </if></div>
             <div class="movieDes-row-right">
                 <ul>
-                    <li><span>{$post.category}:</span>{$post.dramas.title}{$post.title} </li>
+                    <li><span>【{$post.category}】:</span>{$post.dramas.title}{$post.title} </li>
                     <li><span>bt地址:</span><a href="{$post.bt_url}">下载</a></li>
                     <li><span>磁力地址:</span><a href="{$post.mangnet_url}">下载</a></li>
                     <li><span>百度云盘:</span><a href="{$post.baiduyun_url}">下载</a></li>
@@ -101,6 +69,8 @@
 
 
     </div>
+
+</div>
 
 
 </script>

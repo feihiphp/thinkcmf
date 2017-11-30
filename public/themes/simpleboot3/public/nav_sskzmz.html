@@ -1,0 +1,47 @@
+<!--fixed nav start-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container top-cont">
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="/">
+                <img src="__TMPL__/public/assets/img/LOGO.png" alt="logo图标" />
+            </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <div class="navbar-collapse coll">
+            <form class="navbar-form navbar-right" action="{:url('portal/dramas/search')}" role="search">
+                <div class="form-group">
+                    <input name="keyword" class="form-control nav-search" placeholder="搜索" type="text">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbar-left">
+
+
+                <navigation nav-id="" root="" id="main-navigation" class="nav navbar-nav navbar-nav-custom" max-level="0">
+                    <navigationMenu root="li" class="menu-item menu-item-level-{$level}">
+                        <a href="{$menu.href|default=''}" target="{$menu.target|default=''}">
+                            {$menu.name|default=''}
+                        </a>
+                    </navigationMenu>
+                    <navigationFolder root="li"
+                                      class="dropdown dropdown-custom dropdown-custom-level-{$level}"
+                                      dropdown="ul"
+                                      dropdown-class="dropdown-menu dropdown-menu-level-{$level}">
+                        <a href="#" class="dropdown-toggle dropdown-toggle-{$level}" data-toggle="dropdown">
+                            {$menu.name|default=''}<span class="caret"></span>
+                        </a>
+                    </navigationFolder>
+                </navigation>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+<!--fixed nav end	-->
