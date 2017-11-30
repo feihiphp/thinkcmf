@@ -83,12 +83,13 @@ s.parentNode.insertBefore(hm, s);
             <div class="movieDes-row-right">
                 <ul>
                     <li><span>{$post.category}:</span>{$post.dramas.title}{$post.title} </li>
-                    <li><span>bt地址:</span>{$post.bt_url}</li>
-                    <li><span>磁力地址:</span>{$post.mangnet_url} </li>
-                    <li><span>百度云盘:</span>{$post.baiduyun_url}</li>
-                    <li><span>其他云盘:</span>{$post.otheryun_url}</li>
-                    <li><span>微云地址:</span>{$post.weiyun_url}</li>
-                    <li><span>e2dk:</span>{$post.ed2k}</li>
+                    <li><span>bt地址:</span><a href="{$post.bt_url}">下载</a></li>
+                    <li><span>磁力地址:</span><a href="{$post.mangnet_url}">下载</a></li>
+                    <li><span>百度云盘:</span><a href="{$post.baiduyun_url}">下载</a></li>
+                    <li><span>其他云盘:</span> <a href="{$post.otheryun_url}">下载</a></li>
+                    <li><span>微云地址:</span> <a href="{$post.weiyun_url}">下载</a></li>
+                    <li><span>e2dk:</span> <a href="{$post.ed2k}">下载</a></li>
+                    <li><span>在线播放地址:</span> <a href="{$post.play_url}">播放</a></li>
                     <li><span>文件大小:</span>{$post.file_size}M</li>
                     <li><span>下载量:</span>{$post.down_num}</li>
                 </ul>
