@@ -26,7 +26,7 @@ class PublicController extends AdminBaseController
     {
         $loginAllowed = session("__LOGIN_BY_CMF_ADMIN_PW__");
         if (empty($loginAllowed)) {
-            $this->error('非法登录!', cmf_get_root() . '/');
+//            $this->error('非法登录!', cmf_get_root() . '/');
         }
 
         $admin_id = session('ADMIN_ID');
