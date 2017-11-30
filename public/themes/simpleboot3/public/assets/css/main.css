@@ -389,21 +389,20 @@ table {
 	color: #fff;
 }
 .row {
-	margin-left: 48px;
-	margin-right: 28px;
+	/*margin-left: 48px;*/
+	/*margin-right: 28px;*/
     overflow: hidden;
 }
 .col-lg-2{
 	float: left;
+	margin-right: 40px;
 }
 .col-lg-2 img{
 	width: 200px;
-	height: 300px;
 	border: solid 1px #bdbbbc;
 	border-radius: 10px;
 	box-shadow: 12px 12px 12px  #bababa;
-	margin-right: 70px;
-	margin-bottom: 90px;
+	margin-bottom: 19px;
 }
 .textCenter{
 	overflow: hidden;
@@ -856,4 +855,11 @@ button{
     margin-left: 0px;
 }
 
+}
+
+.footer {
+	height: 60px;
+	background-color: #101010;
+	border-top: 1px solid #ddd;
+	padding-top: 20px;
 }

@@ -66,6 +66,7 @@
                                     <else/>
                                     <img src="{:cmf_get_image_preview_url($vo.cover)}"
                                          style="cursor: pointer"/>
+                                    <p style="text-align: center">{$vo.title}</p>
                                 </if>
                             </a>
                         </div>
@@ -112,5 +113,9 @@
     });
 });//点击隐藏显示div
 </script>
+
+
+<include file="public@footer_sskzmz"/>
+
 </body>
 </html>
