@@ -47,6 +47,7 @@ CREATE TABLE `cmf_portal_seed` (
   `subtitles_type` char(8)  NOT NULL  COMMENT '字幕类型：中文字幕 英文字幕 中英双语',
   `subtitles_url` varchar(256)  NOT NULL  COMMENT '字幕地址',
   `file_size` int(10) NOT NULL COMMENT '文件大小',
+  `file_format` char(5) NOT NULL DEFAULT '' COMMENT '文件格式.例如zip、mkv等',
   `down_num` int(10) NOT NULL COMMENT '下载量',
   `season` int(10) NOT NULL COMMENT '季数',
   `episode` int(10) NOT NULL COMMENT '集数',
